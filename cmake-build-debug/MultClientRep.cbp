@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MultClientRep"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep_">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep_/fast">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep/fast">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.cpp">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.cpp">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/client.cpp">
+			<Option target="MultClientRep_"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
