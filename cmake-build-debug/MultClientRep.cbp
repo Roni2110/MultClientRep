@@ -145,6 +145,9 @@
 		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/client.cpp">
 			<Option target="MultClientRep_"/>
 		</Unit>
+		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/commands.h">
+			<Option target="MultClientRep"/>
+		</Unit>
 		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/server.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>
