@@ -57,9 +57,21 @@ public:
         }
     }
 
-    void write ()
-
 };
+
+class Command{
+protected:
+    DeafultIO* dio;
+    string description;
+public:
+    Command(DeafultIO* dio, string des): dio(dio), description(des){}
+    virtual void execute()=0;
+    virtual ~Command(){}
+    virtual void print(){
+        dio->write(description);
+    }
+};
+
 
 #endif //MULTCLIENTREP_COMMANDS_H
 
