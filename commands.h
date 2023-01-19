@@ -15,34 +15,6 @@
 
 using namespace std;
 
-void checkInput(string input, int check) {
-    string str;
-    int intNum;
-
-    //check that there is an int.
-    stringstream ss(input);
-    if(ss >> intNum){
-        ss << intNum;
-    }
-    if(!ss>0){
-        check = 1;
-        return;
-    }
-    //check that there is a string.
-    ss.clear();
-    if(ss >> str){
-        ss << str;
-    }
-    if((ss != "AUC") && (ss != "MAN") && (ss != "CHB")
-        && (ss != "CAN") && (ss != "MIN")){
-        check = 2;
-        return;
-    }
-    if(!ss.eof()) {
-        return;
-    }
-}
-
 class DeafultIO{
 public:
     virtual string read()=0;
