@@ -117,7 +117,7 @@ public:
         int check;
         input1 = dio->read();
         check = checkInput(input1);
-        if(check != 0) {
+        if(check == -1) {
             dio->write(invalid);
             return;
         } else {
@@ -128,7 +128,7 @@ public:
         string input2;
         input2 = dio->read();
         check = checkInput(input1);
-        if(check != 0) {
+        if(check == -1) {
             dio->write(invalid);
             return;
         } else {
