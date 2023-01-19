@@ -1,4 +1,4 @@
-C:\WINDOWS\system32\wsl.exe --distribution Ubuntu --exec /bin/bash -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug && /usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' -S /mnt/c/Users/omern/CLionProjects/MultClientRep -B /mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\danas\CLionProjects\MultClientRep -B C:\Users\danas\CLionProjects\MultClientRep\cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug
+-- Build files have been written to: C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug

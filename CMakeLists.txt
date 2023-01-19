@@ -10,6 +10,6 @@ add_executable(MultClientRep
         DistanceClass.h
         Knn.cpp
         Knn.h
-        server.cpp)
+        server.cpp commands.h)
 
 add_executable(MultClientRep_ client.cpp)
