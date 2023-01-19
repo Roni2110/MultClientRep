@@ -10,9 +10,38 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <sstream>
 
 
 using namespace std;
+
+void checkInput(string input, int check) {
+    string str;
+    int intNum;
+
+    //check that there is an int.
+    stringstream ss(input);
+    if(ss >> intNum){
+        ss << intNum;
+    }
+    if(!ss>0){
+        check = 1;
+        return;
+    }
+    //check that there is a string.
+    ss.clear();
+    if(ss >> str){
+        ss << str;
+    }
+    if((ss != "AUC") && (ss != "MAN") && (ss != "CHB")
+        && (ss != "CAN") && (ss != "MIN")){
+        check = 2;
+        return;
+    }
+    if(!ss.eof()) {
+        return;
+    }
+}
 
 class DeafultIO{
 public:
@@ -59,12 +88,21 @@ public:
 
 };
 
+struct info{
+    string train;
+    string test;
+    int k;
+    string DIS;
+};
+
+
 class Command{
 protected:
     DeafultIO* dio;
     string description;
+    info* info;
 public:
-    Command(DeafultIO* dio, string des): dio(dio), description(des){}
+    Command(DeafultIO* dio, struct info* info): dio(dio), info(info){}
     virtual void execute()=0;
     virtual ~Command(){}
     virtual void print(){
@@ -72,6 +110,60 @@ public:
     }
 };
 
+//option 2
+class AlgorithmSetting: public Command{
+public:
+    AlgorithmSetting(DeafultIO* dio, struct info* info ,const string &des): Command(dio, info) {
+        this->description = "2. algorithm settings\n";
+        this->info->k = 5;
+        this->info->DIS = "EUC";
+    }
+    void execute() {
+        int currentK = info->k;
+        string currentDistance = info->DIS;
+        string currentInfo = "The current KNN parameters are: k = ";
+        dio->write(currentInfo);
+        dio->write(currentK);
+        dio->write(", distance metric = ");
+        dio->write(currentDistance);
+        string input = dio->read();
+        if(input.length() == 0){
+            return;
+        }
+        else {
+            string str;
+            int intNum;
+            //check that there is an int.
+            stringstream ss(input);
+            if (ss >> intNum) {
+                ss << intNum;
+            }
+            if (!ss > 0) {
+                string invalidK = "invalid value for K";
+                dio->write(invalidK);
+            }
+            //check that there is a string.
+            ss.clear();
+            if (ss >> str) {
+                ss << str;
+            }
+            if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
+                && (ss.str() != "CAN") && (ss.str() != "MIN")) {
+                string invalidDis = "invalid value for metric";
+                dio->write(invalidDis);
+                return;
+            }
+            if (!ss.eof()) {
+                string invalidInput = "invalid input";
+                dio->write(invalidInput);
+                return;
+            }
+            this->info->k = intNum;
+            this->info->DIS = str;
+            return;
+        }
+    }
+};
 
 #endif //MULTCLIENTREP_COMMANDS_H
 
