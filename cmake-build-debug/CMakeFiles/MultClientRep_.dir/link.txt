@@ -1,1 +1,3 @@
-/usr/bin/c++  -g   CMakeFiles/MultClientRep_.dir/client.cpp.o  -o MultClientRep_ 
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\MultClientRep_.dir/objects.a
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\mingw\bin\ar.exe qc CMakeFiles\MultClientRep_.dir/objects.a @CMakeFiles\MultClientRep_.dir\objects1.rsp
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\MultClientRep_.dir/objects.a -Wl,--no-whole-archive -o MultClientRep_.exe -Wl,--out-implib,libMultClientRep_.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MultClientRep_.dir\linklibs.rsp

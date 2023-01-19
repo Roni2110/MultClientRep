@@ -1,1 +1,3 @@
-/usr/bin/c++  -g   CMakeFiles/MultClientRep.dir/DistanceClass.cpp.o CMakeFiles/MultClientRep.dir/Knn.cpp.o CMakeFiles/MultClientRep.dir/server.cpp.o  -o MultClientRep 
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\MultClientRep.dir/objects.a
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\mingw\bin\ar.exe qc CMakeFiles\MultClientRep.dir/objects.a @CMakeFiles\MultClientRep.dir\objects1.rsp
+C:\Users\danas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\MultClientRep.dir/objects.a -Wl,--no-whole-archive -o MultClientRep.exe -Wl,--out-implib,libMultClientRep.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MultClientRep.dir\linklibs.rsp
