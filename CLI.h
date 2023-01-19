@@ -5,6 +5,9 @@
 #ifndef MULTCLIENTREP_CLI_H
 #define MULTCLIENTREP_CLI_H
 
+#include "commands.h"
+
+
 
 
 class CLI {

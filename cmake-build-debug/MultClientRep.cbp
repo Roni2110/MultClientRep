@@ -8,150 +8,150 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MultClientRep">
-				<Option output="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/danas/CLionProjects/MultClientRep/."/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MultClientRep/fast">
-				<Option output="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/danas/CLionProjects/MultClientRep/."/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep/fast"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MultClientRep_">
-				<Option output="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/danas/CLionProjects/MultClientRep/."/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MultClientRep_/fast">
-				<Option output="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/danas/CLionProjects/MultClientRep/."/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_/fast"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/Users/danas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/danas/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep_">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep_/fast">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep_" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep_/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MultClientRep/fast">
+				<Option output="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/MultClientRep" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/omern/CLionProjects/MultClientRep/."/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 MultClientRep/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/DistanceClass.cpp">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/DistanceClass.h">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/Knn.cpp">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/Knn.h">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/client.cpp">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/client.cpp">
 			<Option target="MultClientRep_"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/commands.h">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/server.cpp">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>
-		<Unit filename="C:/Users/danas/CLionProjects/MultClientRep/CMakeLists.txt">
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
