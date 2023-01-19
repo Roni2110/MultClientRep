@@ -85,7 +85,7 @@ public:
 //option 2
 class AlgorithmSetting: public Command{
 public:
-    AlgorithmSetting(DeafultIO* dio, struct info* info ,const string &des): Command(dio, info) {
+    AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
         this->description = "2. algorithm settings\n";
         this->info->k = 5;
         this->info->DIS = "EUC";
@@ -135,6 +135,92 @@ public:
             return;
         }
     }
+};
+
+/**
+ * first command.
+ */
+class UploadFiles : public Command {
+public:
+
+    UploadFiles(DeafultIO* dio, struct info* info) : Command(dio, info){
+        this->description = "1. upload an unclassified csv data files\n";
+    }
+
+    /**
+     * destructor.
+     */
+    virtual ~UploadFiles(){}
+
+    /**
+     * validate client input.
+     * @param input - string that the costumer entered.
+     * @return - -1 if the string is invalid, 0 o.w.
+     */
+    int checkInput(string input) {
+        string str2 = ".csv";
+        if(!(strstr(input.c_str(), str2.c_str()))) {
+            return -1;
+        }
+        return 0;
+    }
+
+
+    /**
+     * execute command1.
+     */
+    virtual void execute() {
+        string trainStr = "Please upload your local train CSV file.\n";
+        string testStr = "Please upload your local test CSV file.\n";
+        string complete = "Upload complete.\n";
+        string invalid = "invalid input\n";
+        //write trainStr to the client
+        dio->write(trainStr);
+        string input1;
+        int check;
+        input1 = dio->read();
+        check = checkInput(input1);
+        if(check == -1) {
+            dio->write(invalid);
+            return;
+        } else {
+            //upload to struct the file name
+            this->info->train = input1;
+            dio->write(complete);
+        }
+        dio->write(testStr);
+        string input2;
+        input2 = dio->read();
+        check = checkInput(input1);
+        if(check == -1) {
+            dio->write(invalid);
+            return;
+        } else {
+            //upload to struct the file name
+            this->info->test = input2;
+            dio->write(complete);
+        }
+    }
+};
+
+class ClassifyData : Command {
+public:
+
+    ClassifyData(DeafultIO* dio, struct info* info) : Command(dio, info) {
+        this->description = "3. classify data\n";
+    }
+
+    /**
+     * destructor.
+     */
+    virtual ~ClassifyData(){};
+
+    virtual void execute() {
+
+    }
+
+
+
 };
 
 #endif //MULTCLIENTREP_COMMANDS_H
