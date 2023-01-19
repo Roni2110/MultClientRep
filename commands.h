@@ -15,6 +15,13 @@
 
 using namespace std;
 
+struct info{
+    string train;
+    string test;
+    int k;
+    string DIS;
+};
+
 class DeafultIO{
 public:
     virtual string read()=0;
@@ -60,13 +67,6 @@ public:
 
 };
 
-struct info{
-    string train;
-    string test;
-    int k;
-    string DIS;
-};
-
 
 class Command{
 protected:
@@ -81,62 +81,6 @@ public:
         dio->write(description);
     }
 };
-
-//option 2
-class AlgorithmSetting: public Command{
-public:
-    AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
-        this->description = "2. algorithm settings\n";
-        this->info->k = 5;
-        this->info->DIS = "EUC";
-    }
-    void execute() {
-        int currentK = info->k;
-        string currentDistance = info->DIS;
-        string currentInfo = "The current KNN parameters are: k = ";
-        dio->write(currentInfo);
-        dio->write(currentK);
-        dio->write(", distance metric = ");
-        dio->write(currentDistance);
-        string input = dio->read();
-        if(input.length() == 0){
-            return;
-        }
-        else {
-            string str;
-            int intNum;
-            //check that there is an int.
-            stringstream ss(input);
-            if (ss >> intNum) {
-                ss << intNum;
-            }
-            if (!ss > 0) {
-                string invalidK = "invalid value for K";
-                dio->write(invalidK);
-            }
-            //check that there is a string.
-            ss.clear();
-            if (ss >> str) {
-                ss << str;
-            }
-            if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
-                && (ss.str() != "CAN") && (ss.str() != "MIN")) {
-                string invalidDis = "invalid value for metric";
-                dio->write(invalidDis);
-                return;
-            }
-            if (!ss.eof()) {
-                string invalidInput = "invalid input";
-                dio->write(invalidInput);
-                return;
-            }
-            this->info->k = intNum;
-            this->info->DIS = str;
-            return;
-        }
-    }
-};
-
 /**
  * first command.
  */
@@ -202,6 +146,62 @@ public:
         }
     }
 };
+
+//option 2
+class AlgorithmSetting: public Command{
+public:
+    AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
+        this->description = "2. algorithm settings\n";
+        this->info->k = 5;
+        this->info->DIS = "EUC";
+    }
+    void execute() {
+        int currentK = info->k;
+        string currentDistance = info->DIS;
+        string currentInfo = "The current KNN parameters are: k = ";
+        dio->write(currentInfo);
+        dio->write(currentK);
+        dio->write(", distance metric = ");
+        dio->write(currentDistance);
+        string input = dio->read();
+        if(input.length() == 0){
+            return;
+        }
+        else {
+            string str;
+            int intNum;
+            //check that there is an int.
+            stringstream ss(input);
+            if (ss >> intNum) {
+                ss << intNum;
+            }
+            if (!ss > 0) {
+                string invalidK = "invalid value for K";
+                dio->write(invalidK);
+            }
+            //check that there is a string.
+            ss.clear();
+            if (ss >> str) {
+                ss << str;
+            }
+            if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
+                && (ss.str() != "CAN") && (ss.str() != "MIN")) {
+                string invalidDis = "invalid value for metric";
+                dio->write(invalidDis);
+                return;
+            }
+            if (!ss.eof()) {
+                string invalidInput = "invalid input";
+                dio->write(invalidInput);
+                return;
+            }
+            this->info->k = intNum;
+            this->info->DIS = str;
+            return;
+        }
+    }
+};
+
 
 class ClassifyData : Command {
 public:
