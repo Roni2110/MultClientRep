@@ -209,7 +209,7 @@ public:
 /**
  * command 3.
  */
-class ClassifyData : Command {
+class ClassifyData : public Command {
 public:
 
     ClassifyData(DeafultIO* dio, struct info* info) : Command(dio, info) {
@@ -250,15 +250,16 @@ public:
 /**
  * command 4.
  */
-class displayResult : Command {
-    displayResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
+class DisplayResult : public Command {
+public:
+    DisplayResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "4. display results\n";
     }
 
     /**
      * destructor.
      */
-    virtual ~displayResult(){};
+    virtual ~DisplayResult(){};
     virtual void execute() {
         string invalid1 = "please upload data.\n";
         string invalid2 = "please classify data.\n";
@@ -280,15 +281,16 @@ class displayResult : Command {
 
 };
 
-class downloadResult : Command {
-    downloadResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
+class DownloadResult : public Command {
+public:
+    DownloadResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "5. download results\n";
     }
 
     /**
  * destructor.
  */
-    virtual ~downloadResult(){};
+    virtual ~DownloadResult(){};
     virtual void execute() {
         string invalid1 = "please upload data.\n";
         string invalid2 = "please classify data.\n";
