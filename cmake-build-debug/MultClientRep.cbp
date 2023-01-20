@@ -130,6 +130,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h">
+			<Option target="MultClientRep"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>

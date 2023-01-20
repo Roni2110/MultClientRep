@@ -10,7 +10,13 @@
 using namespace std;
 
 class CLI {
+    DeafultIO* dio;
+    vector<Command*> commands;
 
+public:
+    CLI(DeafultIO* dio);
+    void start();
+    virtual ~CLI();
 };
 
 
