@@ -149,7 +149,9 @@ public:
     }
 };
 
-//option 2
+/**
+ * command 2.
+ */
 class AlgorithmSetting: public Command{
 public:
     AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
@@ -204,7 +206,9 @@ public:
     }
 };
 
-
+/**
+ * command 3.
+ */
 class ClassifyData : Command {
 public:
 
@@ -243,6 +247,9 @@ public:
     }
 };
 
+/**
+ * command 4.
+ */
 class displayResult : Command {
     displayResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "4. display results\n";
@@ -267,6 +274,7 @@ class displayResult : Command {
         int j = 1;
         for(int i = 0; i < size; i++) {
             cout<< j << this->info->results.at(i) << endl;
+            j++;
         }
         cout << "Done." << endl;
     }
