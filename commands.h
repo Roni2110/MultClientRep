@@ -157,7 +157,7 @@ public:
     AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
         this->description = "2. algorithm settings\n";
         this->info->k = 5;
-        this->info->DIS = "EUC";
+        this->info->DIS = "AUC";
     }
     void execute() {
         int currentK = info->k;
@@ -262,6 +262,7 @@ class displayResult : Command {
     virtual void execute() {
         string invalid1 = "please upload data.\n";
         string invalid2 = "please classify data.\n";
+        string done = "Done.\n";
         if(this->info->train.empty() || this->info->test.empty()) {
             dio->write(invalid1);
             return;
@@ -271,12 +272,10 @@ class displayResult : Command {
             return;
         }
         int size = this->info->results.size();
-        int j = 1;
         for(int i = 0; i < size; i++) {
-            cout<< j << this->info->results.at(i) << endl;
-            j++;
+            dio->write(this->info->results.at(i));
         }
-        cout << "Done." << endl;
+        dio->write(done);
     }
 
 };
