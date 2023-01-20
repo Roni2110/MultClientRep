@@ -156,6 +156,33 @@ MultClientRep/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultClientRep.dir/build.make CMakeFiles/MultClientRep.dir/build
 .PHONY : MultClientRep/fast
 
+CLI.o: CLI.cpp.o
+
+.PHONY : CLI.o
+
+# target to build an object file
+CLI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultClientRep.dir/build.make CMakeFiles/MultClientRep.dir/CLI.cpp.o
+.PHONY : CLI.cpp.o
+
+CLI.i: CLI.cpp.i
+
+.PHONY : CLI.i
+
+# target to preprocess a source file
+CLI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultClientRep.dir/build.make CMakeFiles/MultClientRep.dir/CLI.cpp.i
+.PHONY : CLI.cpp.i
+
+CLI.s: CLI.cpp.s
+
+.PHONY : CLI.s
+
+# target to generate assembly for a file
+CLI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MultClientRep.dir/build.make CMakeFiles/MultClientRep.dir/CLI.cpp.s
+.PHONY : CLI.cpp.s
+
 DistanceClass.o: DistanceClass.cpp.o
 
 .PHONY : DistanceClass.o
@@ -274,6 +301,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MultClientRep"
 	@echo "... MultClientRep_"
+	@echo "... CLI.o"
+	@echo "... CLI.i"
+	@echo "... CLI.s"
 	@echo "... DistanceClass.o"
 	@echo "... DistanceClass.i"
 	@echo "... DistanceClass.s"
