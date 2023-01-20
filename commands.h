@@ -280,6 +280,34 @@ class displayResult : Command {
 
 };
 
+class downloadResult : Command {
+    downloadResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
+        this->description = "5. download results\n";
+    }
+
+    /**
+ * destructor.
+ */
+    virtual ~downloadResult(){};
+    virtual void execute() {
+        string invalid1 = "please upload data.\n";
+        string invalid2 = "please classify data.\n";
+        string done = "Done.\n";
+        if(this->info->train.empty() || this->info->test.empty()) {
+            dio->write(invalid1);
+            return;
+        }
+        if(this->info->results.empty()) {
+            dio->write(invalid2);
+            return;
+        }
+        int size = this->info->results.size();
+        for(int i = 0; i < size; i++) {
+            dio->write(this->info->results.at(i));
+        }
+    }
+};
+
 #endif //MULTCLIENTREP_COMMANDS_H
 
 

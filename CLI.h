@@ -7,8 +7,10 @@
 
 #include "commands.h"
 
+using namespace std;
 
 class CLI {
+
 
 
 };
