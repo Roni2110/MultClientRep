@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sstream>
+#include "Knn.h"
 
 
 using namespace std;
@@ -20,6 +21,7 @@ struct info{
     string test;
     int k;
     string DIS;
+    vector<string> results;
 };
 
 class DeafultIO{
@@ -216,10 +218,58 @@ public:
     virtual ~ClassifyData(){};
 
     virtual void execute() {
+        string notUpload = "please upload data\n";
+        string complete = "classifying data complete\n";
+        string invalid = "invalid input\n";
+        int flag = 0;
+        int i = 1;
+        vector<string> v1;
+        vector<vector<double>> resTest;
+        if(this->info->test.empty() || this->info->train.empty()) {
+            dio->write(notUpload);
+            return;
+        }
+        Knn* knn = new Knn(this->info->k, this->info->DIS, this->info->test, this->info->train);
+        resTest = knn->getVectorsTest(this->info->test);
+        knn->classifyData(this->info->train, resTest, flag);
+        if(flag == -1) {
+            dio->write(invalid);
+            delete knn;
+            return;
+        }
+        dio->write(complete);
+        this->info->results = knn->getResVec();
+        delete knn;
+    }
+};
 
+class displayResult : Command {
+    displayResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
+        this->description = "4. display results\n";
     }
 
-
+    /**
+     * destructor.
+     */
+    virtual ~displayResult(){};
+    virtual void execute() {
+        string invalid1 = "please upload data.\n";
+        string invalid2 = "please classify data.\n";
+        if(this->info->train.empty() || this->info->test.empty()) {
+            dio->write(invalid1);
+            return;
+        }
+        if(this->info->results.empty()) {
+            dio->write(invalid2);
+            return;
+        }
+        int size = this->info->results.size();
+        int j = 1;
+        for(int i = 0; i < size; i++) {
+            cout<< j << this->info->results.at(i) << endl;
+        }
+        cout << "Done." << endl;
+    }
 
 };
 
