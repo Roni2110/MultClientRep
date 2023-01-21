@@ -103,18 +103,18 @@ CMakeFiles/MultClientRep.dir/Knn.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MultClientRep.dir/Knn.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.cpp -o CMakeFiles/MultClientRep.dir/Knn.cpp.s
 
-CMakeFiles/MultClientRep.dir/server.cpp.o: CMakeFiles/MultClientRep.dir/flags.make
-CMakeFiles/MultClientRep.dir/server.cpp.o: ../server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MultClientRep.dir/server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MultClientRep.dir/server.cpp.o -c /mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp
+CMakeFiles/MultClientRep.dir/Server.cpp.o: CMakeFiles/MultClientRep.dir/flags.make
+CMakeFiles/MultClientRep.dir/Server.cpp.o: ../Server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MultClientRep.dir/Server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MultClientRep.dir/Server.cpp.o -c /mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp
 
-CMakeFiles/MultClientRep.dir/server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MultClientRep.dir/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp > CMakeFiles/MultClientRep.dir/server.cpp.i
+CMakeFiles/MultClientRep.dir/Server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MultClientRep.dir/Server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp > CMakeFiles/MultClientRep.dir/Server.cpp.i
 
-CMakeFiles/MultClientRep.dir/server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MultClientRep.dir/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp -o CMakeFiles/MultClientRep.dir/server.cpp.s
+CMakeFiles/MultClientRep.dir/Server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MultClientRep.dir/Server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp -o CMakeFiles/MultClientRep.dir/Server.cpp.s
 
 CMakeFiles/MultClientRep.dir/CLI.cpp.o: CMakeFiles/MultClientRep.dir/flags.make
 CMakeFiles/MultClientRep.dir/CLI.cpp.o: ../CLI.cpp
@@ -133,7 +133,7 @@ CMakeFiles/MultClientRep.dir/CLI.cpp.s: cmake_force
 MultClientRep_OBJECTS = \
 "CMakeFiles/MultClientRep.dir/DistanceClass.cpp.o" \
 "CMakeFiles/MultClientRep.dir/Knn.cpp.o" \
-"CMakeFiles/MultClientRep.dir/server.cpp.o" \
+"CMakeFiles/MultClientRep.dir/Server.cpp.o" \
 "CMakeFiles/MultClientRep.dir/CLI.cpp.o"
 
 # External object files for target MultClientRep
@@ -141,7 +141,7 @@ MultClientRep_EXTERNAL_OBJECTS =
 
 MultClientRep: CMakeFiles/MultClientRep.dir/DistanceClass.cpp.o
 MultClientRep: CMakeFiles/MultClientRep.dir/Knn.cpp.o
-MultClientRep: CMakeFiles/MultClientRep.dir/server.cpp.o
+MultClientRep: CMakeFiles/MultClientRep.dir/Server.cpp.o
 MultClientRep: CMakeFiles/MultClientRep.dir/CLI.cpp.o
 MultClientRep: CMakeFiles/MultClientRep.dir/build.make
 MultClientRep: CMakeFiles/MultClientRep.dir/link.txt

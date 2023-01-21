@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.cpp" "/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir/CLI.cpp.o"
   "/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.cpp" "/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir/DistanceClass.cpp.o"
   "/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.cpp" "/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir/Knn.cpp.o"
-  "/mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp" "/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir/server.cpp.o"
+  "/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp" "/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir/Server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

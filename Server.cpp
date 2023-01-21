@@ -5,9 +5,30 @@
 #include <vector>
 #include <sstream>
 #include "Knn.h"
+#include "Server.h"
+
 
 using namespace std;
 
+
+Server::Server(int port) throw(const char*) {
+    sockNum = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockNum < 0) {
+        cout << "error creating socket" << endl;
+        exit(1);
+    }
+    server.sin_family = AF_INET;
+    server.sin_addr.s_addr = INADDR_ANY;
+    server.sin_port = htons(port);
+    if (bind(sockNum, (struct sockaddr *) &server, sizeof(server)) < 0) {
+        cout << "error binding socket" << endl;
+        exit(1);
+    }
+    if (listen(sockNum, 5) < 0) {
+        cout << "error listening to a socket" << endl;
+        exit(1);
+    }
+}
 /**
  * checking arguments.
  * @param k - should be a number > 0.
@@ -75,14 +96,9 @@ int checkingStr(string str,string &distance, vector<double> &v1, int &k, int &fl
  * @param port - port.
  * @param fileName - should be .csv.
  */
-void checkingArgv(int port, string fileName) {
-    string str2 = "csv";
+void checkingArgv(int port) {
    if(port < 1024 || port > 65535) {
        cout<< "invalid port number!"<< endl;
-       exit(1);
-   }
-   if(!(strstr(fileName.c_str(), str2.c_str()))) {
-       cout << "invalid file!" << endl;
        exit(1);
    }
 }
@@ -95,7 +111,8 @@ int main (int argc, char *argv[]) {
     int res;
     string file = argv[1];
     const int server_port = atoi(argv[2]);
-    checkingArgv(server_port, file);
+    checkingArgv(server_port);
+    Server server(server_port);
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         cout << "error creating socket" << endl;

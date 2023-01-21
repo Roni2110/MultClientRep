@@ -148,13 +148,16 @@
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h">
 			<Option target="MultClientRep"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp">
+			<Option target="MultClientRep"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.h">
+			<Option target="MultClientRep"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/client.cpp">
 			<Option target="MultClientRep_"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h">
-			<Option target="MultClientRep"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/server.cpp">
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CMakeLists.txt">

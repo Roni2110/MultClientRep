@@ -34,41 +34,6 @@ public:
 
 };
 
-class SocketIO: public DeafultIO{
-private:
-    int clientID;
-public:
-    SocketIO(int ID){
-        this->clientID = ID;
-    }
-    string read() override{
-        char buffer[4096] = {0};
-        int expected_data_len = sizeof(buffer);
-        int read_bytes = recv(clientID, buffer, expected_data_len, 0);
-        if (read_bytes == 0) {
-            cout << "no message from client" << endl;
-            return "";
-        }
-        if (read_bytes < 0) {
-            cout << "error getting a message from client" << endl;
-            return "";
-        }
-        string data = buffer;
-        return data;
-    }
-
-    void write(string text) override{
-        int length = text.length();
-        char message_to_send[length + 1];
-        strcpy(message_to_send, text.c_str());
-        int send_bytes = send(clientID, message_to_send, length, 0);
-        if (send_bytes < 0) {
-            cout << "error sending a message" << endl;
-        }
-    }
-
-};
-
 
 class Command{
 protected:

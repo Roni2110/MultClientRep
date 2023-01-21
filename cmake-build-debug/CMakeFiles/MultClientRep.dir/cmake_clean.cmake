@@ -2,7 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MultClientRep.dir/CLI.cpp.o"
   "CMakeFiles/MultClientRep.dir/DistanceClass.cpp.o"
   "CMakeFiles/MultClientRep.dir/Knn.cpp.o"
-  "CMakeFiles/MultClientRep.dir/server.cpp.o"
+  "CMakeFiles/MultClientRep.dir/Server.cpp.o"
   "MultClientRep"
   "MultClientRep.pdb"
 )
