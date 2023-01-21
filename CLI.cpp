@@ -19,11 +19,17 @@ void CLI::start() {
     commands.push_back(&displayResult);
     DownloadResult downloadResult(this->dio, &my_info);
     commands.push_back(&downloadResult);
-    //2 commands left
-
-
-
-
+    //1 commands left
+    int size = commands.size();
+    int chooseOp = 0;
+    while(chooseOp != 6) {
+        dio->write(starting);
+        for(int i = 0; i < size; i++) {
+            commands.at(i)->print();
+        }
+        chooseOp = stoi(dio->read());
+        commands.at(chooseOp-1)->execute();
+    }
 }
 
 CLI::~CLI() {}
