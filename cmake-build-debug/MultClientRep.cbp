@@ -131,21 +131,27 @@
 			</Target>
 		</Build>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.cpp">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.cpp">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.cpp">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp">
@@ -158,6 +164,7 @@
 			<Option target="MultClientRep_"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h">
+			<Option target="MultClientRep_"/>
 			<Option target="MultClientRep"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/omern/CLionProjects/MultClientRep/CMakeLists.txt">

@@ -7,7 +7,7 @@
 
 
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sstream>
@@ -28,7 +28,7 @@ class DeafultIO{
 public:
     virtual string read()=0;
     virtual void write(string text)=0;
-    virtual ~DeafultIO(){}
+    virtual ~DeafultIO()= default;
 
 };
 
@@ -37,11 +37,11 @@ class Command{
 protected:
     DeafultIO* dio;
     string description;
-    info* info;
+    info* information;
 public:
-    Command(DeafultIO* dio, struct info* info): dio(dio), info(info){}
+    Command(DeafultIO* dio, struct info* info1): dio(dio), information(info1){}
     virtual void execute()=0;
-    virtual ~Command(){}
+    virtual ~Command()= default;
     virtual void print(){
         dio->write(description);
     }
@@ -59,14 +59,14 @@ public:
     /**
      * destructor.
      */
-    virtual ~UploadFiles(){}
+    ~UploadFiles() override= default;;
 
     /**
      * validate client input.
      * @param input - string that the costumer entered.
      * @return - -1 if the string is invalid, 0 o.w.
      */
-    int checkInput(string input) {
+    static int checkInput(string input) {
         string str2 = ".csv";
         if(!(strstr(input.c_str(), str2.c_str()))) {
             return -1;
@@ -78,7 +78,7 @@ public:
     /**
      * execute command1.
      */
-    virtual void execute() {
+    void execute() override {
         string trainStr = "Please upload your local train CSV file.\n";
         string testStr = "Please upload your local test CSV file.\n";
         string complete = "Upload complete.\n";
@@ -94,7 +94,7 @@ public:
             return;
         } else {
             //upload to struct the file name
-            this->info->train = input1;
+            this->information->train = input1;
             dio->write(complete);
         }
         dio->write(testStr);
@@ -106,7 +106,7 @@ public:
             return;
         } else {
             //upload to struct the file name
-            this->info->test = input2;
+            this->information->test = input2;
             dio->write(complete);
         }
     }
@@ -119,17 +119,21 @@ class AlgorithmSetting: public Command{
 public:
     AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
         this->description = "2. algorithm settings\n";
-        this->info->k = 5;
-        this->info->DIS = "AUC";
+        this->information->k = 5;
+        this->information->DIS = "AUC";
     }
-    void execute() {
+    /**
+ * destructor.
+ */
+    ~AlgorithmSetting() override= default;;
+    void execute() override {
         int check = 0;
-        int currentK = info->k;
+        int currentK = information->k;
         string invalidK = "invalid value for K";
         string invalidDis = "invalid value for metric";
         string invalidInput = "invalid input";
         string kToStr = to_string(currentK);
-        string currentDistance = info->DIS;
+        string currentDistance = information->DIS;
         string currentInfo = "The current KNN parameters are: k = ";
         dio->write(currentInfo + " " + kToStr + " " + "distance metric = " + currentDistance);
         string input = dio->read();
@@ -172,8 +176,8 @@ public:
             dio->write(invalidK +"\n"+ invalidInput);
             return;
         }
-        this->info->k = intNum;
-        this->info->DIS = str;
+        this->information->k = intNum;
+        this->information->DIS = str;
         string valid = "valid";
         dio->write(valid);
     }
@@ -192,29 +196,30 @@ public:
     /**
      * destructor.
      */
-    virtual ~ClassifyData(){};
+    ~ClassifyData() override= default;;
 
-    virtual void execute() {
+    void execute() override {
         string notUpload = "please upload data\n";
         string complete = "classifying data complete\n";
         string invalid = "invalid input\n";
         int flag = 0;
         vector<string> v1;
         vector<vector<double>> resTest;
-        if(this->info->test.empty() || this->info->train.empty()) {
+        if(this->information->test.empty() || this->information->train.empty()) {
             dio->write(notUpload);
             return;
         }
-        Knn* knn = new Knn(this->info->k, this->info->DIS, this->info->test, this->info->train);
-        resTest = knn->getVectorsTest(this->info->test);
-        knn->classifyData(this->info->train, resTest, flag);
+        Knn* knn = new Knn(this->information->k, this->information->DIS, this->information->test,
+                           this->information->train);
+        resTest = knn->getVectorsTest(this->information->test);
+        knn->classifyData(this->information->train, resTest, flag);
         if(flag == -1) {
             dio->write(invalid);
             delete knn;
             return;
         }
         dio->write(complete);
-        this->info->results = knn->getResVec();
+        this->information->results = knn->getResVec();
         delete knn;
     }
 };
@@ -231,22 +236,22 @@ public:
     /**
      * destructor.
      */
-    virtual ~DisplayResult(){};
-    virtual void execute() {
+    ~DisplayResult() override= default;;
+    void execute() override {
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
         string done = "Done.";
-        if(this->info->train.empty() || this->info->test.empty()) {
+        if(this->information->train.empty() || this->information->test.empty()) {
             dio->write(invalid1);
             return;
         }
-        if(this->info->results.empty()) {
+        if(this->information->results.empty()) {
             dio->write(invalid2);
             return;
         }
-        int size = this->info->results.size();
+        int size = this->information->results.size();
         for(int i = 0; i < size; i++) {
-            dio->write(this->info->results.at(i));
+            dio->write(this->information->results.at(i));
         }
         dio->write(done);
     }
@@ -262,22 +267,22 @@ public:
     /**
  * destructor.
  */
-    virtual ~DownloadResult(){};
-    virtual void execute() {
+    ~DownloadResult() override= default;;
+    void execute() override {
         string invalid1 = "please upload data.\n";
         string invalid2 = "please classify data.\n";
         string done = "Done.\n";
-        if(this->info->train.empty() || this->info->test.empty()) {
+        if(this->information->train.empty() || this->information->test.empty()) {
             dio->write(invalid1);
             return;
         }
-        if(this->info->results.empty()) {
+        if(this->information->results.empty()) {
             dio->write(invalid2);
             return;
         }
-        int size = this->info->results.size();
+        int size = this->information->results.size();
         for(int i = 0; i < size; i++) {
-            dio->write(this->info->results.at(i));
+            dio->write(this->information->results.at(i));
         }
         dio->write(done);
     }
@@ -291,10 +296,11 @@ public:
     Exit(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "8. exit\n";
     }
+    ~Exit() override= default;;
 
-    void execute(){
+    void execute() override{
         //delete all the data
-        delete info;
+        delete information;
         //close the CLI
         string close_socket = "close";
         dio->write(close_socket);

@@ -1,9 +1,6 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <string.h>
-#include <vector>
-#include <sstream>
 #include "Knn.h"
 #include "Server.h"
 
@@ -28,7 +25,6 @@ Server::Server(int port){
         cout << "error listening to a socket" << endl;
         exit(1);
     }
-    flag = true;
 }
 
 void Server:: start(ClientHandler& clientHandler) {
@@ -38,74 +34,9 @@ void Server:: start(ClientHandler& clientHandler) {
         cout << "error accepting client" << endl;
         exit(0);
     }
-    clientHandler.handle(client_sock);
-    std::thread t(std::ref(clientHandler),std::ref(client_sock));
+    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
 }
 
-void Server:: stop() {
-
-}
-/**
- * checking arguments.
- * @param k - should be a number > 0.
- * @param dis - should be one of the distance we got in knn.
- */
-int checkingArg(int k, string dis, int &flag) {
-    if((k<=0) ||
-       ((dis != "AUC") && (dis != "MAN") && (dis != "CHB")
-        && (dis != "CAN") && (dis != "MIN"))) {
-       flag = -1;
-        return flag;
-    }
-    return flag;
-}
-
-/**
- * checking buffer from client.
- * @param str - the string we got in buffer from client.
- * @param distance - MAN/AUC/CHB/MIN/CAN.
- * @param v1 - vector for calculating distance.
- * @param k - the k neighbors.
- */
-int checkingStr(string str,string &distance, vector<double> &v1, int &k, int &flag) {
-    k = -1;
-    v1.clear();
-    double num;
-    int checkInt;
-    stringstream ss;
-    string checkStr;
-    stringstream stringstream1(str);
-    while (stringstream1 >> num) {
-        v1.push_back(num);
-    }
-    if (v1.empty()) {
-        flag = -1;
-        return flag;
-    }
-    stringstream1.clear();
-    if(stringstream1 >> checkStr) {
-        ss << checkStr;
-    }
-    distance = ss.str();
-    if (str.empty()) {
-        flag = -1;
-        return flag;
-    }
-    stringstream1.clear();
-    if (stringstream1 >> checkInt) {
-        k = checkInt;
-    }
-    if (k == -1) {
-        flag = -1;
-        return flag;
-    }
-    if(!stringstream1.eof()) {
-        flag = -1;
-        return flag;
-    }
-    int res = checkingArg(k, distance,flag);
-    return res;
-}
 
 /**
  * checking arguments.
@@ -120,62 +51,11 @@ void checkingArgv(int port) {
 }
 
 int main (int argc, char *argv[]) {
-    string message;
-    vector<double> vector;
-    string distance;
-    int neighbor;
-    int res;
     const int server_port = atoi(argv[1]);
     checkingArgv(server_port);
     Server server(server_port);
     while (true) {
         ClientHandler ch;
         server.start(ch);
-
-        while (true) {
-            int flag = 0;
-            char buffer[4096] = {0};
-            int expected_data_len = sizeof(buffer);
-            int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
-            if (read_bytes == 0) {
-                cout << "no message from client" << endl;
-                break;
-            }
-            if (read_bytes < 0) {
-                cout << "error getting a message from client" << endl;
-                break;
-            }
-            string data = buffer;
-            res = checkingStr(data, distance, vector, neighbor, flag);
-            //in case we found invalid input
-            if (res == -1) {
-                message = "invalid input";
-                int length = message.length();
-                char invalid_message[length + 1];
-                strcpy(invalid_message, message.c_str());
-                int send_bytes = send(client_sock, invalid_message, length, 0);
-                if (send_bytes < 0) {
-                    cout << "error sending a message" << endl;
-                }
-            } else {
-                //if the input is valid
-                Knn *knn = new Knn(neighbor, distance, vector);
-                knn->uploadFiles(file, flag);
-                //check if flag is -1 - then something went wrong in knn class
-                if (flag == -1) {
-                    message = "invalid input";
-                } else {
-                    message = knn->getMessage();
-                }
-                int length = message.length();
-                char message_to_send[length + 1];
-                strcpy(message_to_send, message.c_str());
-                int send_bytes = send(client_sock, message_to_send, length, 0);
-                if (send_bytes < 0) {
-                    cout << "error sending a message" << endl;
-                }
-                delete knn;
-            }
-        }
     }
 }

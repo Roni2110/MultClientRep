@@ -16,12 +16,12 @@ class SocketIO: public DeafultIO{
 private:
     int clientID;
 public:
-    SocketIO(int ID){
+    explicit SocketIO(int ID){
         this->clientID = ID;
     }
     //read string from client
-    virtual string read() {
-        string message = "";
+    string read() override {
+        string message;
         char buffer[4096] = {0};
         int expected_data_len = sizeof(buffer);
         int read_bytes = recv(clientID, &buffer, expected_data_len, 0);
@@ -38,7 +38,7 @@ public:
     }
 
     //write string to client
-    virtual void write(string text) {
+    void write(string text) override {
         int length = text.length();
         char message_to_send[length + 1];
         strcpy(message_to_send, text.c_str());
@@ -63,15 +63,11 @@ public:
 class Server {
     int sockNum;
     sockaddr_in server;
-    struct sockaddr client_sin;
-    bool flag;
+    sockaddr_in client_sin;
 
 public:
-    Server(int port);
+    explicit Server(int port);
     void start(ClientHandler& ch);
-    void stop();
-    virtual ~Server();
-
 };
 
 

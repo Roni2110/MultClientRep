@@ -8,7 +8,7 @@ CLI::CLI(DeafultIO* dio) {
 
 void CLI::start() {
     info my_info;
-    string starting = "Welcome to the KNN Classifier server. Please choose an option\n";
+    string starting = "Welcome to the KNN Classifier server. Please choose an option:\n";
     UploadFiles uploadFiles(this->dio, &my_info);
     commands.push_back(&uploadFiles);
     AlgorithmSetting algorithmSetting(this->dio, &my_info);
@@ -19,7 +19,8 @@ void CLI::start() {
     commands.push_back(&displayResult);
     DownloadResult downloadResult(this->dio, &my_info);
     commands.push_back(&downloadResult);
-    //1 commands left
+    Exit exit1(this->dio, &my_info);
+    commands.push_back(&exit1);
     int size = commands.size();
     int chooseOp = 0;
     while(chooseOp != 8) {
@@ -32,5 +33,5 @@ void CLI::start() {
     }
 }
 
-CLI::~CLI() {}
+CLI::~CLI() = default;
 

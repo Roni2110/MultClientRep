@@ -12,4 +12,8 @@ add_executable(MultClientRep
         Knn.h
         Server.cpp commands.h CLI.h CLI.cpp)
 
-add_executable(MultClientRep_ client.cpp)
+add_executable(MultClientRep_ client.cpp commands.h CLI.h CLI.cpp
+        DistanceClass.cpp
+        DistanceClass.h
+        Knn.cpp
+        Knn.h)
