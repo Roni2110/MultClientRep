@@ -22,33 +22,60 @@ public:
     //read string from client
     string read() override {
         string message;
-        char buffer[4096] = {0};
-        int expected_data_len = sizeof(buffer);
-        int read_bytes = recv(clientID, &buffer, expected_data_len, 0);
-        if (read_bytes == 0) {
-            cout << "no message from client" << endl;
-            return message;
+        char c;
+        int expected_data_len = sizeof(c);
+        while(c != '@') {
+            int read_bytes = recv(clientID, &c, expected_data_len, 0);
+            if(c == '@') {
+                break;
+            }
+            if (read_bytes == 0) {
+                cout << "no message from client" << endl;
+                exit(1);
+            }
+            if (read_bytes < 0) {
+                cout << "error getting a message from client" << endl;
+                exit(1);
+            }
+            message += c;
         }
-        if (read_bytes < 0) {
-            cout << "error getting a message from client" << endl;
-            exit(0);
-        }
-        message = buffer;
         return message;
+//        string message;
+//        char buffer[4096] = {0};
+//        int expected_data_len = sizeof(buffer);
+//        int read_bytes = recv(clientID, &buffer, expected_data_len, 0);
+//        if (read_bytes == 0) {
+//            cout << "no message from client" << endl;
+//            return message;
+//        }
+//        if (read_bytes < 0) {
+//            cout << "error getting a message from client" << endl;
+//            exit(0);
+//        }
+//        message = buffer;
+//        return message;
     }
 
     //write string to client
     void write(string text) override {
         int length = text.length();
+        text[length] = '@';
         char message_to_send[length + 1];
         strcpy(message_to_send, text.c_str());
-        int send_bytes = send(clientID, message_to_send, length, 0);
+        int send_bytes = send(clientID, message_to_send, length + 1, 0);
         if (send_bytes < 0) {
             cout << "error sending a message" << endl;
             return;
         }
+//        int length = text.length();
+//        char message_to_send[length + 1];
+//        strcpy(message_to_send, text.c_str());
+//        int send_bytes = send(clientID, message_to_send, length, 0);
+//        if (send_bytes < 0) {
+//            cout << "error sending a message" << endl;
+//            return;
+//        }
     }
-
 };
 
 class ClientHandler{

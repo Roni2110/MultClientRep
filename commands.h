@@ -29,7 +29,6 @@ public:
     virtual string read()=0;
     virtual void write(string text)=0;
     virtual ~DeafultIO()= default;
-
 };
 
 
