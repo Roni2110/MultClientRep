@@ -80,6 +80,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
 
     int main(int argc, char *argv[]) {
         string user_input;
+        vector<thread*> threadVec;
         const char *ip_address = argv[1];
         const int client_port = atoi(argv[2]);
         checkingClientArgv(client_port, ip_address);
@@ -98,23 +99,6 @@ void checkingUserInput(string user_input, int sock, int& check) {
             exit(1);
         }
         while (true) {
-            //int check = 0;
-            //getting a vector, a distance method and the number of neighbors from the user.
-            //getline(cin, user_input);
-            //if ((double) user_input.size() >= log(DBL_MAX) - 1) {
-            //  user_input = user_input.substr(0, sizeof(double));
-            //}
-            //checking ig the input from the user is valid and just if it is - sending it to the server.
-            //checkingUserInput(user_input, sock, check);
-            //if (check == 0) {
-            //    int data_len = user_input.length();
-            //    const char *data_addr = user_input.c_str();
-            //    int sent_bytes = send(sock, data_addr, data_len, 0);
-            //    if (sent_bytes < 0) {
-            //        cout << "error sending a message" << endl;
-            //        break;
-            //    }
-
             char buffer[4096] = {0};
             int expected_data_len = sizeof(buffer);
             //receiving the menu from the CLI
@@ -138,16 +122,16 @@ void checkingUserInput(string user_input, int sock, int& check) {
 
             //getting an option from the user and sending it to the cli
             int option;
+            int data_len;
+            const char *data_addr;
             cin >> option;
-            int data_len = option.length();
-            const char *data_addr = option.c_str();
-            int sent_bytes = send(sock, data_addr, data_len, 0);
+            int sent_bytes = send(sock, &option, sizeof(option), 0);
             if (sent_bytes < 0) {
                 cout << "error sending a message" << endl;
                 break;
             }
 
-            if(option == 1){
+            if(option == 1) {
                 read_bytes = recv(sock, buffer, expected_data_len, 0);
                 if (read_bytes <= 0) {
                     cout << "error getting a message from CLI" << endl;
@@ -160,7 +144,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
                 //getting the file from the user
                 getline(cin, trainFile);
                 data_len = trainFile.length();
-                const char *data_addr = trainFile.c_str();
+                data_addr = trainFile.c_str();
                 sent_bytes = send(sock, data_addr, data_len, 0);
                 if (sent_bytes < 0) {
                     cout << "error sending a message" << endl;
@@ -199,7 +183,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
                     //getting the file from the user
                     getline(cin, testFile);
                     data_len = testFile.length();
-                    const char *data_addr = testFile.c_str();
+                    data_addr = testFile.c_str();
                     sent_bytes = send(sock, data_addr, data_len, 0);
                     if (sent_bytes < 0) {
                         cout << "error sending a message" << endl;
@@ -245,7 +229,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
                 }
                 //sending it to the cli
                 data_len = new_settings.length();
-                const char *data_addr = testFile.c_str();
+                data_addr = new_settings.c_str();
                 sent_bytes = send(sock, data_addr, data_len, 0);
                 if (sent_bytes < 0) {
                     cout << "error sending a message" << endl;
@@ -286,7 +270,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
                 }
                 // convert buffer to a string
                 string print_classify(buffer);
-                if(print_classify == "please upload data." || "please classify data."){
+                if(print_classify == "please upload data." || print_classify == "please classify data.") {
                     cout<< print_classify<< endl;
                     break;
                 }
@@ -298,7 +282,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
                         break;
                     }
                     // convert buffer to a string
-                    print_classify(buffer);
+                    string print_classify(buffer);
                 }
                 cout<< print_classify << endl;
                 //waiting for enter from the user
@@ -308,19 +292,50 @@ void checkingUserInput(string user_input, int sock, int& check) {
                 }
             }
 
-            if(option == 5){
-
+            if(option == 5) {
+                thread* t = new thread() {
+                    threadVec.push_back(t);
+                    string local_path;
+                    //get a local path from user
+                    getline(cin, local_path);
+                    ofstream MyFile(local_path);
+                    read_bytes = recv(sock, buffer, expected_data_len, 0);
+                    if (read_bytes <= 0) {
+                        cout << "error getting a message from CLI" << endl;
+                        break;
+                    }
+                    // convert buffer to a string
+                    string write_classify(buffer);
+                    if(write_classify == "please upload data." || write_classify == "please classify data.") {
+                        cout<< write_classify<< endl;
+                        break;
+                    }
+                    int i = 1;
+                    while(write_classify != "Done."){
+                        //write to file
+                        MyFile << i + " " + write_classify << endl;
+                        read_bytes = recv(sock, buffer, expected_data_len, 0);
+                        if (read_bytes <= 0) {
+                            cout << "error getting a message from CLI" << endl;
+                            break;
+                        }
+                        // convert buffer to a string
+                        string print_classify(buffer);
+                        i++;
+                    }
+                    MyFile.close();
+                }
             }
 
-            if(option == 8){
+            if(option == 8) {
                 //check if connection is must
                 read_bytes = recv(sock, buffer, expected_data_len, 0);
                 if (read_bytes <= 0) {
                     cout << "error getting a message from CLI" << endl;
                     break;
                 }
-                string close(buffer);
-                if(close == "close") {
+                string exit(buffer);
+                if(exit == "close") {
                     close(sock);
                 }
             }

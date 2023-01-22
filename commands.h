@@ -281,6 +281,7 @@ public:
         for(int i = 0; i < size; i++) {
             dio->write(this->info->results.at(i));
         }
+        dio->write(done);
     }
 };
 
