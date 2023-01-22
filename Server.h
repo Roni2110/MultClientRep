@@ -10,6 +10,16 @@
 #include "commands.h"
 #include "CLI.h"
 
+
+class clientHandler{
+public:
+    virtual void handle(int clientID){
+        SocketIO socket(clientID);
+        CLI cli(&socket);
+        cli.start();
+    }
+};
+
 class SocketIO: public DeafultIO{
 private:
     int clientID;

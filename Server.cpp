@@ -139,6 +139,10 @@ int main (int argc, char *argv[]) {
             cout << "error accepting client" << endl;
             break;
         }
+        //dana add
+        clientHandler ch;
+        ch.handle(client_sock);
+
         while (true) {
             int flag = 0;
             char buffer[4096] = {0};

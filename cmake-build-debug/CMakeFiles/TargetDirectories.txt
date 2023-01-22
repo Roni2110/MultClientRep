@@ -1,4 +1,0 @@
-/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep_.dir
-/mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug/CMakeFiles/MultClientRep.dir

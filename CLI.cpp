@@ -22,7 +22,7 @@ void CLI::start() {
     //1 commands left
     int size = commands.size();
     int chooseOp = 0;
-    while(chooseOp != 6) {
+    while(chooseOp != 8) {
         dio->write(starting);
         for(int i = 0; i < size; i++) {
             commands.at(i)->print();

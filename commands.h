@@ -125,49 +125,58 @@ public:
         this->info->DIS = "AUC";
     }
     void execute() {
+        int check = 0;
         int currentK = info->k;
         string currentDistance = info->DIS;
         string currentInfo = "The current KNN parameters are: k = ";
-        dio->write(currentInfo);
-        dio->write(currentK);
-        dio->write(", distance metric = ");
-        dio->write(currentDistance);
+        dio->write(currentInfo + " " + currentK + " " + "distance metric = " + currentDistance + "\n");
         string input = dio->read();
-        if(input.length() == 0){
+        string str;
+        int intNum;
+        //check that there is an int.
+        stringstream ss(input);
+        if (ss >> intNum) {
+            ss << intNum;
+        }
+        if (!ss > 0) {
+            string invalidK = "invalid value for K";
+            check = 1
+        }
+        //check that there is a string.
+        ss.clear();
+        if (ss >> str) {
+            ss << str;
+        }
+        if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
+        && (ss.str() != "CAN") && (ss.str() != "MIN")) {
+            string invalidDis = "invalid value for metric";
+            if(check==0){
+                check = 2;
+            }
+            check = 3;
+        }
+        if (!ss.eof()) {
+            string invalidInput = "invalid input";
+            dio->write(invalidInput);
             return;
         }
-        else {
-            string str;
-            int intNum;
-            //check that there is an int.
-            stringstream ss(input);
-            if (ss >> intNum) {
-                ss << intNum;
-            }
-            if (!ss > 0) {
-                string invalidK = "invalid value for K";
-                dio->write(invalidK);
-            }
-            //check that there is a string.
-            ss.clear();
-            if (ss >> str) {
-                ss << str;
-            }
-            if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
-                && (ss.str() != "CAN") && (ss.str() != "MIN")) {
-                string invalidDis = "invalid value for metric";
-                dio->write(invalidDis);
-                return;
-            }
-            if (!ss.eof()) {
-                string invalidInput = "invalid input";
-                dio->write(invalidInput);
-                return;
-            }
-            this->info->k = intNum;
-            this->info->DIS = str;
+        if(check==1){
+            dio->write(invalidK);
             return;
         }
+        if(check == 2){
+            dio->write(invalidDis);
+            return;
+        }
+        if(check === 3){
+            dio->write(invalidK +"\n"+ invalidInput);
+            return;
+        }
+        this->info->k = intNum;
+        this->info->DIS = str;
+        string valid = "valid";
+        dio->write(valid);
+        return;
     }
 };
 
@@ -226,9 +235,9 @@ public:
      */
     virtual ~DisplayResult(){};
     virtual void execute() {
-        string invalid1 = "please upload data.\n";
-        string invalid2 = "please classify data.\n";
-        string done = "Done.\n";
+        string invalid1 = "please upload data.";
+        string invalid2 = "please classify data.";
+        string done = "Done.";
         if(this->info->train.empty() || this->info->test.empty()) {
             dio->write(invalid1);
             return;
@@ -273,6 +282,29 @@ public:
             dio->write(this->info->results.at(i));
         }
     }
+};
+
+/**
+ * command 8.
+ */
+class Exit: public Command{
+public:
+    Exit(DeafultIO* dio, struct info* info) : Command(dio, info) {
+        this->description = "8. exit\n";
+    }
+
+    void execute(){
+        //delete all the data
+        delete info->results;
+        delete info->test;
+        delete info->train;
+        delete info->DIS;
+        delete info->k;
+        //close the CLI
+        string close_socket = "close";
+        dio->write(close_socket);
+    }
+
 };
 
 #endif //MULTCLIENTREP_COMMANDS_H
