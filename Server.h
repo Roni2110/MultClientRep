@@ -11,14 +11,6 @@
 #include "CLI.h"
 
 
-class ClientHandler{
-public:
-    virtual void handle(int clientID){
-        SocketIO socket(clientID);
-        CLI cli(&socket);
-        cli.start();
-    }
-};
 
 class SocketIO: public DeafultIO{
 private:
@@ -59,8 +51,16 @@ public:
 
 };
 
+class ClientHandler{
+public:
+    virtual void handle(int clientID){
+        SocketIO socket(clientID);
+        CLI cli(&socket);
+        cli.start();
+    }
+};
+
 class Server {
-    thread* t;
     int sockNum;
     sockaddr_in server;
     struct sockaddr client_sin;

@@ -32,18 +32,14 @@ Server::Server(int port){
 }
 
 void Server:: start(ClientHandler& clientHandler) {
-    t = new thread([&clientHandler,this]() {
-        while (flag) {
-            socklen_t addr_len = sizeof(client_sin);
-            int client_sock = accept(sockNum, (struct sockaddr *) &client_sin, &addr_len);
-            if (client_sock < 0) {
-                cout << "error accepting client" << endl;
-                exit(0);
-            }
-            clientHandler.handle(client_sock);
-        }
-
+    socklen_t addr_len = sizeof(client_sin);
+    int client_sock = accept(sockNum, (struct sockaddr *) &client_sin, &addr_len);
+    if (client_sock < 0) {
+        cout << "error accepting client" << endl;
+        exit(0);
     }
+    clientHandler.handle(client_sock);
+    std::thread t(std::ref(clientHandler),std::ref(client_sock));
 }
 
 void Server:: stop() {
@@ -135,7 +131,6 @@ int main (int argc, char *argv[]) {
     while (true) {
         ClientHandler ch;
         server.start(ch);
-
 
         while (true) {
             int flag = 0;

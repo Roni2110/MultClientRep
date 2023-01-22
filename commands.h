@@ -28,8 +28,6 @@ class DeafultIO{
 public:
     virtual string read()=0;
     virtual void write(string text)=0;
-    virtual void write(float f)=0;
-    virtual void read(float* f)=0;
     virtual ~DeafultIO(){}
 
 };

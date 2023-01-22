@@ -7,14 +7,12 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <string.h>
+#include <cstring>
 #include <vector>
-#include <sstream>
 #include <cstdlib>
 #include <stdexcept>
-#include <cfloat>
 #include <valarray>
-#include "CLI.h"
+#include <fstream>
 #include "Server.h"
 
 using namespace std;
@@ -78,7 +76,20 @@ void checkingUserInput(string user_input, int sock, int& check) {
     }
 }
 
+void writeFile(string path, string* str1) {
+    ofstream outFile;
+    outFile.open(path);
+    int j = 1;
+    for(int i = 0; i < str1->length(); i++) {
+        outFile << to_string(j) + " " + str1->at(i) << endl;
+    }
+    outFile.close();
+}
+
+
+
     int main(int argc, char *argv[]) {
+        bool toFinish = false;
         string user_input;
         vector<thread> threadVec;
         const char *ip_address = argv[1];
@@ -293,38 +304,39 @@ void checkingUserInput(string user_input, int sock, int& check) {
             }
 
             if(option == 5) {
-                std::thread t([&threadVec]() {
-                    threadVec.push_back(t);
-                    string local_path;
-                    //get a local path from user
-                    getline(cin, local_path);
-                    ofstream MyFile(local_path);
+                string local_path;
+                string str[4096] = {0};
+                int i = 1;
+                //get a local path from user
+                getline(cin, local_path);
+                read_bytes = recv(sock, buffer, expected_data_len, 0);
+                if (read_bytes <= 0) {
+                    cout << "error getting a message from CLI" << endl;
+                    break;
+                }
+                // convert buffer to a string
+                string write_classify(buffer);
+                if (write_classify == "please upload data." || write_classify == "please classify data.") {
+                    cout << write_classify << endl;
+                    break;
+                }
+                if(write_classify == "Done.") {
+                    break;
+                }
+                str[0] = write_classify;
+                while (write_classify != "Done.") {
                     read_bytes = recv(sock, buffer, expected_data_len, 0);
                     if (read_bytes <= 0) {
                         cout << "error getting a message from CLI" << endl;
                         break;
                     }
                     // convert buffer to a string
-                    string write_classify(buffer);
-                    if(write_classify == "please upload data." || write_classify == "please classify data.") {
-                        cout<< write_classify<< endl;
-                        break;
-                    }
-                    int i = 1;
-                    while(write_classify != "Done."){
-                        //write to file
-                        MyFile << i + " " + write_classify << endl;
-                        read_bytes = recv(sock, buffer, expected_data_len, 0);
-                        if (read_bytes <= 0) {
-                            cout << "error getting a message from CLI" << endl;
-                            break;
-                        }
-                        // convert buffer to a string
-                        string print_classify(buffer);
-                        i++;
-                    }
-                    MyFile.close();
+                    string print_classify(buffer);
+                    str[i] = print_classify;
+                    i++;
                 }
+                //a new thread writing to the file
+                threadVec.emplace_back(writeFile, local_path, str);
             }
 
             if(option == 8) {
@@ -336,9 +348,16 @@ void checkingUserInput(string user_input, int sock, int& check) {
                 }
                 string exit(buffer);
                 if(exit == "close") {
+                    toFinish = true;
                     close(sock);
                 }
             }
+            if(toFinish) {
+                break;
+            }
+        }
+        for(int i = 0; i < threadVec.size(); i++) {
+            threadVec.at(i).join();
         }
     }
 
