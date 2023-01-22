@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.cpp
+CLI.h
+/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h
+
+/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h
+commands.h
+/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h
+
+/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h
+vector
+-
+
+/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h
+DistanceClass.h
+/mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h
+string
+-
+
+/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h
+iostream
+-
+cstring
+-
+sys/socket.h
+-
+netinet/in.h
+-
+sstream
+-
+Knn.h
+/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/MultClientRep_.dir/client.cpp.o CMakeFiles/MultClientRep_.dir/CLI.cpp.o CMakeFiles/MultClientRep_.dir/DistanceClass.cpp.o CMakeFiles/MultClientRep_.dir/Knn.cpp.o  -o MultClientRep_ 
