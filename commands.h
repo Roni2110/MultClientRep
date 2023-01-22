@@ -129,7 +129,7 @@ public:
         int currentK = info->k;
         string currentDistance = info->DIS;
         string currentInfo = "The current KNN parameters are: k = ";
-        dio->write(currentInfo + " " + currentK + " " + "distance metric = " + currentDistance + "\n");
+        dio->write(currentInfo + " " + currentK + " " + "distance metric = " + currentDistance);
         string input = dio->read();
         string str;
         int intNum;

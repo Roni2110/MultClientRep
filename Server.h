@@ -11,7 +11,7 @@
 #include "CLI.h"
 
 
-class clientHandler{
+class ClientHandler{
 public:
     virtual void handle(int clientID){
         SocketIO socket(clientID);

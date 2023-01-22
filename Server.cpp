@@ -109,38 +109,19 @@ int main (int argc, char *argv[]) {
     string distance;
     int neighbor;
     int res;
-    string file = argv[1];
-    const int server_port = atoi(argv[2]);
+    const int server_port = atoi(argv[1]);
     checkingArgv(server_port);
     Server server(server_port);
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0) {
-        cout << "error creating socket" << endl;
-        exit(1);
-    }
-    struct sockaddr_in sin;
-    memset(&sin, 0, sizeof(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = INADDR_ANY;
-    sin.sin_port = htons(server_port);
-    if (bind(sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
-        cout << "error binding socket" << endl;
-        exit(1);
-    }
-    if (listen(sock, 5) < 0) {
-        cout << "error listening to a socket" << endl;
-        exit(1);
-    }
-    struct sockaddr client_sin;
-    unsigned int addr_len = sizeof(client_sin);
     while (true) {
+        struct sockaddr client_sin;
+        unsigned int addr_len = sizeof(client_sin);
         int client_sock = accept(sock, (struct sockaddr *) &client_sin, &addr_len);
         if (client_sock < 0) {
             cout << "error accepting client" << endl;
             break;
         }
         //dana add
-        clientHandler ch;
+        ClientHandler ch;
         ch.handle(client_sock);
 
         while (true) {
