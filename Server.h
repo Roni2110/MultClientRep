@@ -63,10 +63,13 @@ class Server {
     thread* t;
     int sockNum;
     sockaddr_in server;
-    sockaddr_in client;
+    struct sockaddr client_sin;
+    bool flag;
 
 public:
-    Server(int port) throw(const char*);
+    Server(int port);
+    void start(ClientHandler& ch);
+    void stop();
     virtual ~Server();
 
 };

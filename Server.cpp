@@ -11,7 +11,7 @@
 using namespace std;
 
 
-Server::Server(int port) throw(const char*) {
+Server::Server(int port){
     sockNum = socket(AF_INET, SOCK_STREAM, 0);
     if (sockNum < 0) {
         cout << "error creating socket" << endl;
@@ -28,6 +28,26 @@ Server::Server(int port) throw(const char*) {
         cout << "error listening to a socket" << endl;
         exit(1);
     }
+    flag = true;
+}
+
+void Server:: start(ClientHandler& clientHandler) {
+    t = new thread([&clientHandler,this]() {
+        while (flag) {
+            socklen_t addr_len = sizeof(client_sin);
+            int client_sock = accept(sockNum, (struct sockaddr *) &client_sin, &addr_len);
+            if (client_sock < 0) {
+                cout << "error accepting client" << endl;
+                exit(0);
+            }
+            clientHandler.handle(client_sock);
+        }
+
+    }
+}
+
+void Server:: stop() {
+
 }
 /**
  * checking arguments.
@@ -113,16 +133,9 @@ int main (int argc, char *argv[]) {
     checkingArgv(server_port);
     Server server(server_port);
     while (true) {
-        struct sockaddr client_sin;
-        unsigned int addr_len = sizeof(client_sin);
-        int client_sock = accept(sock, (struct sockaddr *) &client_sin, &addr_len);
-        if (client_sock < 0) {
-            cout << "error accepting client" << endl;
-            break;
-        }
-        //dana add
         ClientHandler ch;
-        ch.handle(client_sock);
+        server.start(ch);
+
 
         while (true) {
             int flag = 0;

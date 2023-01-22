@@ -127,9 +127,13 @@ public:
     void execute() {
         int check = 0;
         int currentK = info->k;
+        string invalidK = "invalid value for K";
+        string invalidDis = "invalid value for metric";
+        string invalidInput = "invalid input";
+        string kToStr = to_string(currentK);
         string currentDistance = info->DIS;
         string currentInfo = "The current KNN parameters are: k = ";
-        dio->write(currentInfo + " " + currentK + " " + "distance metric = " + currentDistance);
+        dio->write(currentInfo + " " + kToStr + " " + "distance metric = " + currentDistance);
         string input = dio->read();
         string str;
         int intNum;
@@ -139,8 +143,7 @@ public:
             ss << intNum;
         }
         if (!ss > 0) {
-            string invalidK = "invalid value for K";
-            check = 1
+            check = 1;
         }
         //check that there is a string.
         ss.clear();
@@ -149,18 +152,17 @@ public:
         }
         if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
         && (ss.str() != "CAN") && (ss.str() != "MIN")) {
-            string invalidDis = "invalid value for metric";
-            if(check==0){
+            if(check != 1){
                 check = 2;
+            } else {
+                check = 3;
             }
-            check = 3;
         }
         if (!ss.eof()) {
-            string invalidInput = "invalid input";
             dio->write(invalidInput);
             return;
         }
-        if(check==1){
+        if(check == 1){
             dio->write(invalidK);
             return;
         }
@@ -168,7 +170,7 @@ public:
             dio->write(invalidDis);
             return;
         }
-        if(check === 3){
+        if(check == 3){
             dio->write(invalidK +"\n"+ invalidInput);
             return;
         }
@@ -176,7 +178,6 @@ public:
         this->info->DIS = str;
         string valid = "valid";
         dio->write(valid);
-        return;
     }
 };
 
@@ -200,7 +201,6 @@ public:
         string complete = "classifying data complete\n";
         string invalid = "invalid input\n";
         int flag = 0;
-        int i = 1;
         vector<string> v1;
         vector<vector<double>> resTest;
         if(this->info->test.empty() || this->info->train.empty()) {
@@ -295,11 +295,7 @@ public:
 
     void execute(){
         //delete all the data
-        delete info->results;
-        delete info->test;
-        delete info->train;
-        delete info->DIS;
-        delete info->k;
+        delete info;
         //close the CLI
         string close_socket = "close";
         dio->write(close_socket);
