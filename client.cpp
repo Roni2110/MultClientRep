@@ -80,7 +80,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
 
     int main(int argc, char *argv[]) {
         string user_input;
-        vector<thread*> threadVec;
+        vector<thread> threadVec;
         const char *ip_address = argv[1];
         const int client_port = atoi(argv[2]);
         checkingClientArgv(client_port, ip_address);
@@ -293,7 +293,7 @@ void checkingUserInput(string user_input, int sock, int& check) {
             }
 
             if(option == 5) {
-                thread* t = new thread() {
+                std::thread t([&threadVec]() {
                     threadVec.push_back(t);
                     string local_path;
                     //get a local path from user
