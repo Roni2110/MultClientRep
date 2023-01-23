@@ -11,6 +11,7 @@ The CLI will print the client this menu:
   4. display results
   5. download results
   8. exit"
+  
  For every option in the menu, the CLI has a command that does the necessary actions for that option. All the commands are stored in a vector of commands in the CLI.
  The client will ask the user to choose an option and will send it to the CLI. According to the chosen option, the CLI will execute the right command. During the execute, the CLI and the client communicates by socketIO function, and the client gets/prints information to the user by cin/cout functions.  
  
