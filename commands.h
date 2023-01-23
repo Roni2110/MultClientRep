@@ -26,7 +26,7 @@ struct info{
 
 class DeafultIO{
 public:
-    virtual string read()=0;
+    virtual string read()= 0;
     virtual void write(string text)=0;
     virtual ~DeafultIO()= default;
 };
@@ -83,6 +83,7 @@ public:
         string complete = "Upload complete.\n";
         string invalid = "invalid input\n";
         //write trainStr to the client
+        cout<<trainStr<<endl;
         dio->write(trainStr);
         string input1;
         int check;

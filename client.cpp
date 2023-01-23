@@ -18,33 +18,34 @@
 
 using namespace std;
 
-void writeByChar(string text, int clientId) {
+void writeByChar(string text, int serverId) {
     int length = text.length();
     text[length] = '@';
-    char message_to_send[length + 1];
+    char message_to_send[length+1];
+    cout<< sizeof(message_to_send) <<endl;
     strcpy(message_to_send, text.c_str());
-    int send_bytes = send(clientId, message_to_send, length + 1, 0);
+    int send_bytes = send(serverId, message_to_send, sizeof(message_to_send), 0);
     if (send_bytes < 0) {
         cout << "error sending a message" << endl;
         return;
     }
 }
 
-string readByChar(int clientId) {
+string readByChar(int serverId) {
     string message;
     char c;
     int expected_data_len = sizeof(c);
     while(c != '@') {
-        int read_bytes = recv(clientId, &c, expected_data_len, 0);
+        int read_bytes = recv(serverId, &c, expected_data_len, 0);
         if(c == '@') {
             break;
         }
         if (read_bytes == 0) {
-            cout << "no message from client" << endl;
+            cout << "no message from server" << endl;
             exit(1);
         }
         if (read_bytes < 0) {
-            cout << "error getting a message from client" << endl;
+            cout << "error getting a message from server" << endl;
             exit(1);
         }
         message += c;
@@ -113,12 +114,14 @@ int main(int argc, char *argv[]) {
         }
 
         //getting an option from the user and sending it to the cli
-        int option;
+        string option;
         cin >> option;
-        writeByChar(to_string(option),sock);
+        writeByChar(option,sock);
 
-        if (option == 1) {
+        if (option == "1") {
+            cout<<"hiii"<<endl;
             temp = readByChar(sock);
+            cout<<temp<<endl;
             cout << temp << endl; //please upload train
             string trainFile;
             //getting the file from the user
@@ -146,7 +149,7 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        if (option == 2) {
+        if (option == "2") {
             temp = readByChar(sock);
             cout << temp << endl;
             string new_settings;
@@ -165,12 +168,12 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        if (option == 3) {
+        if (option == "3") {
             temp = readByChar(sock);
             cout << temp << endl;
         }
 
-        if (option == 4) {
+        if (option == "4") {
             temp = readByChar(sock);
             if (temp == "please upload data." || temp == "please classify data.") {
                 cout << temp << endl;
@@ -188,7 +191,7 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        if (option == 5) {
+        if (option == "5") {
             string local_path;
             string str[4096] = {nullptr};
             int i = 1;
@@ -212,7 +215,7 @@ int main(int argc, char *argv[]) {
             threadVec.emplace_back(writeFile, local_path, str);
         }
 
-        if (option == 8) {
+        if (option == "8") {
             temp = readByChar(sock);
             if (temp == "close") {
                 toFinish = true;

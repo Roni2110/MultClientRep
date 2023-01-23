@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.cpp
+CLI.h
+/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h
+
 /mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h
 commands.h
 /mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h
@@ -19,28 +23,6 @@ DistanceClass.h
 /mnt/c/Users/omern/CLionProjects/MultClientRep/DistanceClass.h
 string
 -
-
-/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.cpp
-iostream
--
-sys/socket.h
--
-netinet/in.h
--
-Knn.h
-/mnt/c/Users/omern/CLionProjects/MultClientRep/Knn.h
-Server.h
-/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.h
-
-/mnt/c/Users/omern/CLionProjects/MultClientRep/Server.h
-pthread.h
--
-thread
--
-commands.h
-/mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h
-CLI.h
-/mnt/c/Users/omern/CLionProjects/MultClientRep/CLI.h
 
 /mnt/c/Users/omern/CLionProjects/MultClientRep/commands.h
 iostream

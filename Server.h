@@ -25,6 +25,7 @@ public:
         char c;
         int expected_data_len = sizeof(c);
         while(c != '@') {
+            cout << "hi" << endl;
             int read_bytes = recv(clientID, &c, expected_data_len, 0);
             if(c == '@') {
                 break;
@@ -39,6 +40,7 @@ public:
             }
             message += c;
         }
+        cout<<message<<endl;
         return message;
 //        string message;
 //        char buffer[4096] = {0};
@@ -80,7 +82,7 @@ public:
 
 class ClientHandler{
 public:
-    virtual void handle(int clientID){
+    void handle(int clientID){
         SocketIO socket(clientID);
         CLI cli(&socket);
         cli.start();
