@@ -4,6 +4,7 @@ This code is a multiple clients-server implementation of the K-Nearest Neighbors
 
 We created a server thats gets a port as argument. The server will run infinitely and for every new client that connects it, it will open a new thread with its own CLI - command line interface. That way, the sever can run multiple clients at once, every one in its own thread. Every client will gets an ip and a port as arguments.
 The CLI will print the client this menu:
+
   "Welcome to the KNN Classifier Server. Please choose an option:
   1. upload an unclassified csv data file
   2. algorithm settings
