@@ -27,10 +27,9 @@ Server::Server(int port){
     }
 }
 
-void* handle(void* cli){
-    CLI* cli1 = static_cast<CLI*>(cli);
-    cli1->start();
-    return NULL;
+void* handle(CLI* cli){
+    cli->start();
+    pthread_exit(nullptr);
 }
 
 void Server:: start() {
@@ -40,15 +39,17 @@ void Server:: start() {
         cout << "error accepting client" << endl;
         exit(0);
     }
-    SocketIO* socketIo = new SocketIO(client_sock);
-    //SocketIO sio(client_sock);
-    CLI* cli =  new CLI(socketIo);
+
     pthread_t pthread;
-    pthread_attr_t attr;
-    pthread_attr_init(&attr);
-    pthread_create(&pthread, &attr, handle, &cli);
+    SocketIO sio(client_sock);
+    CLI cli(&sio);
+    pthread_create(&pthread, NULL, reinterpret_cast<void *(*)(void *)>(handle), &cli);
+
+//    pthread_attr_t attr;
+//    pthread_attr_init(&attr);
+//    pthread_create(&pthread, &attr, handle, &cli);
     //pthread_join(pthread, NULL);
-    pthread_detach(pthread);
+   // pthread_detach(pthread);
 //    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
 }
 
