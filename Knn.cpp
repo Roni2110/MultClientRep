@@ -26,19 +26,18 @@ vector<vector<double>> Knn::getVectorsTest(string pathTest) {
     fstream fin;
     //open an existing file
     fin.open(pathTest);
-    if(!fin.is_open()) {
-        cout << "Cant open file" << endl;
-        exit(0);
-    }
-    int i = 0;
+//    if(!fin.is_open()) {
+//        cout << "Cant open file" << endl;
+//        exit(0);
+//    }
     //getting data from file into two vectors
     while(getline(fin, tempByLine)) {
+        vector<double> v1;
         stringstream ss(tempByLine);
-        vector<double> v1 = vecOfVec.at(i);
         while (getline(ss, tempByComma, ',')) {
             v1.push_back(stod(tempByComma));
         }
-        i++;
+        vecOfVec.push_back(v1);
     }
     return vecOfVec;
 }
@@ -54,10 +53,6 @@ void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &f
     fstream fin;
     //open an existing file
     fin.open(pathFile);
-    if(!fin.is_open()) {
-        cout << "Cant open file" << endl;
-        exit(0);
-    }
     while(getline(fin, tempByLine )) {
         stringstream  ss(tempByLine);
         vector<double> temp;
@@ -65,10 +60,10 @@ void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &f
             if(isalpha(tempByComma[0])) {
                 stringVec.push_back(tempByComma);
             } else {
-                resVec.at(i).push_back(stod(tempByComma));
+                temp.push_back(stod(tempByComma));
             }
         }
-        i++;
+        resVec.push_back(temp);
     }
     fin.close();
     sizeTrain = resVec.size();
@@ -77,43 +72,41 @@ void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &f
         flag = -1;
         return;
     }
-    for(int i = 0; i < sizeTrain; i++) {
-        for(int j = 0; j < sizeTest; j++) {
+    for(int i = 0; i < sizeTest; i++) {
+        vector<double>temp;
+        for(int j = 0; j < sizeTrain; j++) {
             //in case the vectors to test are not in the same size.
-            if (resVec.at(i).size() != vecToTest.at(j).size()) {
+            if (resVec.at(j).size() != vecToTest.at(i).size()) {
                 flag = -1;
                 return;
             }
             //calling the distance method according to disName
             if (this->disName == "MAN") {
-                res = DistanceClass::getManDis(resVec.at(i), vecToTest.at(j));
-                doubleVec.at(i).push_back(res);
+                res = DistanceClass::getManDis(resVec.at(j), vecToTest.at(i));
+                temp.push_back(res);
             } else if (this->disName == "AUC") {
-                res = DistanceClass::getEucDis(resVec.at(i), vecToTest.at(j));
-                doubleVec.at(i).push_back(res);
+                res = DistanceClass::getEucDis(resVec.at(j), vecToTest.at(i));
+                temp.push_back(res);
             } else if (this->disName == "CHB") {
-                res = DistanceClass::getChebDis(resVec.at(i), vecToTest.at(j));
-                doubleVec.at(i).push_back(res);
+                res = DistanceClass::getChebDis(resVec.at(j), vecToTest.at(i));
+                temp.push_back(res);
             } else if (this->disName == "CAN") {
-                res = DistanceClass::getCanDis(resVec.at(i), vecToTest.at(j));
+                res = DistanceClass::getCanDis(resVec.at(j), vecToTest.at(i));
                 if (res == -1) {
-                    this->message = "invalid input";
                     flag = -1;
                     return;
                 }
-                doubleVec.at(i).push_back(res);
+                temp.push_back(res);
             } else {
-                res = DistanceClass::getMinkDis(resVec.at(i), vecToTest.at(j));
-                doubleVec.at(i).push_back(res);
+                res = DistanceClass::getMinkDis(resVec.at(j), vecToTest.at(i));
+                temp.push_back(res);
             }
         }
         //in case number of neighbours is bigger than distances.
-        if(this->k > doubleVec.at(i).size()) {
-            this->message = "invalid input";
-            flag = -1;
-            return;
+        if(this->k > temp.size()) {
+            this->k = temp.size();
         }
-        pushingToPairs(doubleVec.at(i),stringVec,i);
+        pushingToPairs(temp,stringVec);
     }
 }
 
@@ -122,27 +115,27 @@ void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &f
  * @param d1 - double vector with the distances.
  * @param s1 - string vector with the names.
  */
-void Knn::pushingToPairs(vector<double> d1, vector<std::string> s1, int j) {
+void Knn::pushingToPairs(vector<double> d1, vector<std::string> s1) {
     for(int i = 0; i < d1.size(); i++) {
-        pairsVec.at(j).emplace_back(d1.at(i), s1.at(i));
+        pairsVec.emplace_back(d1.at(i), s1.at(i));
     }
-    sortingByDistance(pairsVec.at(j), j);
+    sortingByDistance(pairsVec);
 }
 
 /**
  * sorting the pair vector by distance in ascending order.
  * @param vector - pair vector with distance and name.
  */
-void Knn::sortingByDistance(vector<pair<double,string>> vector, int index){
+void Knn::sortingByDistance(vector<pair<double,string>> vector){
     sort(vector.begin(), vector.end());
-    getSignificant(vector,index);
+    getSignificant(vector);
 }
 
 /**
  * get the significant label from the k nearest neighbors.
  * @param pairs - sorted pair vector with distance and name.
  */
-void Knn::getSignificant(vector<pair<double, string>> pairs, int index) {
+void Knn::getSignificant(vector<pair<double, string>> pairs) {
     std::map<string, int> map;
     int i;
     int temp = 0;
@@ -154,10 +147,10 @@ void Knn::getSignificant(vector<pair<double, string>> pairs, int index) {
         temp = map[pairs[i].second];
         if (max <= temp) {
             max = temp;
-            strVec.at(index) = pairs[i].second;
+            res = pairs[i].second;
         }
     }
-    this->finishStrVec.at(i) = strVec.at(index);
+    this->finishStrVec.push_back(res);
 }
 
 vector<string> Knn::getResVec() {

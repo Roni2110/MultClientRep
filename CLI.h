@@ -14,7 +14,7 @@ class CLI {
     vector<Command*> commands;
 
 public:
-    explicit CLI(DeafultIO* dio);
+    CLI(DeafultIO* dio);
     void start();
     virtual ~CLI();
 };

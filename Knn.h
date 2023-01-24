@@ -17,18 +17,18 @@ private:
     string file;
     string testFile;
     vector<double> vecInput;
-    vector<vector<double>> doubleVec;
+    vector<double> doubleVec;
     vector<string> stringVec;
     vector<string> finishStrVec;
-    vector<vector<pair<double,string>>> pairsVec;
+    vector<pair<double,string>> pairsVec;
 
 public:
     Knn(int k, string disName, string testFile, string trainFile);
     vector<vector<double>> getVectorsTest(string PathTest);
     void classifyData(string pathFile, vector<vector<double>> vecToTest, int &flag);
-    void pushingToPairs(vector<double> d1, vector<string> s1, int index);
-    void sortingByDistance(vector<pair<double,string>> resVec, int index);
-    void getSignificant(vector<pair<double, string>> sortVec, int index);
+    void pushingToPairs(vector<double> d1, vector<string> s1);
+    void sortingByDistance(vector<pair<double,string>> resVec);
+    void getSignificant(vector<pair<double, string>> sortVec);
     vector<string> getResVec();
 };
 #endif //KNNREP_KNN_H

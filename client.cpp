@@ -22,7 +22,6 @@ void writeByChar(string text, int serverId) {
     int length = text.length();
     text[length] = '@';
     char message_to_send[length+1];
-    cout<< sizeof(message_to_send) <<endl;
     strcpy(message_to_send, text.c_str());
     int send_bytes = send(serverId, message_to_send, sizeof(message_to_send), 0);
     if (send_bytes < 0) {
@@ -71,12 +70,12 @@ void checkingClientArgv(int port, string ip_address){
     }
 }
 
-void writeFile(string path, string* str1) {
+void writeFile(string path, vector<string>v1) {
     ofstream outFile;
     outFile.open(path);
-    int j = 1;
-    for(int i = 0; i < str1->length(); i++) {
-        outFile << to_string(j) + " " + str1->at(i) << endl;
+    int size = v1.size();
+    for(int i = 0; i < size - 1; i++) {
+        outFile << to_string(i+1) + " " + v1.at(i) << endl;
     }
     outFile.close();
 }
@@ -119,30 +118,30 @@ int main(int argc, char *argv[]) {
         writeByChar(option,sock);
 
         if (option == "1") {
-            cout<<"hiii"<<endl;
             temp = readByChar(sock);
-            cout<<temp<<endl;
             cout << temp << endl; //please upload train
             string trainFile;
             //getting the file from the user
+            cin.ignore();
             getline(cin, trainFile);
             writeByChar(trainFile,sock); //send train path
             temp = readByChar(sock); //invalid or complete
             if (temp == "invalid input") {
                 cout << temp << endl;
-                break;
+                continue;
             } else {
                 cout << temp << endl; //complete
                 temp = readByChar(sock); //upload test file
                 cout << temp << endl;
                 string testFile;
                 //getting the file from the user
+                cin>>std::ws;
                 getline(cin, testFile);
                 writeByChar(testFile,sock);
                 temp = readByChar(sock); //invalid or complete
                 if (temp == "invalid input") {
                     cout << temp << endl;
-                    break;
+                    continue;
                 } else {
                     cout << temp << endl;
                 }
@@ -154,15 +153,17 @@ int main(int argc, char *argv[]) {
             cout << temp << endl;
             string new_settings;
             //get a new k and dis
+            cin.ignore();
             getline(cin, new_settings);
-            if (new_settings.length() == 0) {
-                break;
+            if (new_settings.length() == 0) { //case the input is \n
+                writeByChar(new_settings,sock);
+                continue;
             }
             //sending it to the cli
             writeByChar(new_settings,sock);
             temp = readByChar(sock);
             if (temp == "valid") {
-                break;
+                continue;
             } else {
                 cout << temp << endl;
             }
@@ -177,42 +178,45 @@ int main(int argc, char *argv[]) {
             temp = readByChar(sock);
             if (temp == "please upload data." || temp == "please classify data.") {
                 cout << temp << endl;
-                break;
+                continue;
             }
+            int i = 1;
             while (temp != "Done.") {
-                cout << temp << endl;
+                cout << to_string(i) + " " + temp << endl;
                 temp = readByChar(sock);
+                i++;
             }
             cout << temp << endl;
             //waiting for enter from the user
+            cin.ignore();
             getline(cin, user_input);
-            if (user_input.empty()) {
-                break;
+            while(!user_input.empty()) {
+                cin.ignore();
+                getline(cin, user_input);
             }
         }
 
         if (option == "5") {
             string local_path;
-            string str[4096] = {nullptr};
-            int i = 1;
+            vector<string> v1;
             //get a local path from user
+            cin.ignore();
             getline(cin, local_path);
             temp = readByChar(sock);
             if (temp == "please upload data." || temp == "please classify data.") {
                 cout << temp << endl;
-                break;
+                continue;
             }
             if (temp == "Done.") {
-                break;
+                continue;
             }
-            str[0] = temp;
+            v1.push_back(temp);
             while (temp != "Done.") {
                 temp = readByChar(sock);
-                str[i] = temp;
-                i++;
+                v1.push_back(temp);
             }
             //a new thread writing to the file
-            threadVec.emplace_back(writeFile, local_path, str);
+            threadVec.emplace_back(writeFile, local_path, v1);
         }
 
         if (option == "8") {

@@ -22,14 +22,16 @@ void CLI::start() {
     Exit exit1(this->dio, &my_info);
     commands.push_back(&exit1);
     int size = commands.size();
-    int chooseOp = 0;
-    while(chooseOp != 8) {
+    while(true) {
         dio->write(starting);
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             commands.at(i)->print();
         }
-        chooseOp = stoi(dio->read());
-        commands.at(chooseOp-1)->execute();
+        int chooseOp = stoi(dio->read());
+        if(chooseOp == 8) {
+            chooseOp = 6;
+        }
+        commands.at(chooseOp - 1)->execute();
     }
 }
 

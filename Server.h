@@ -16,7 +16,7 @@ class SocketIO: public DeafultIO{
 private:
     int clientID;
 public:
-    explicit SocketIO(int ID){
+    SocketIO(int ID){
         this->clientID = ID;
     }
     //read string from client
@@ -25,7 +25,6 @@ public:
         char c;
         int expected_data_len = sizeof(c);
         while(c != '@') {
-            cout << "hi" << endl;
             int read_bytes = recv(clientID, &c, expected_data_len, 0);
             if(c == '@') {
                 break;
@@ -60,7 +59,7 @@ public:
 
     //write string to client
     void write(string text) override {
-        int length = text.length();
+        int length = text.size();
         text[length] = '@';
         char message_to_send[length + 1];
         strcpy(message_to_send, text.c_str());
@@ -80,14 +79,14 @@ public:
     }
 };
 
-class ClientHandler{
-public:
-    void handle(int clientID){
-        SocketIO socket(clientID);
-        CLI cli(&socket);
-        cli.start();
-    }
-};
+//class ClientHandler{
+//public:
+//    void handle(int clientID){
+//        SocketIO socket(clientID);
+//        CLI cli(&socket);
+//        cli.start();
+//    }
+//};
 
 class Server {
     int sockNum;
@@ -96,7 +95,7 @@ class Server {
 
 public:
     explicit Server(int port);
-    void start(ClientHandler& ch);
+    void start();
 };
 
 

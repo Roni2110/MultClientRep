@@ -27,14 +27,29 @@ Server::Server(int port){
     }
 }
 
-void Server:: start(ClientHandler& clientHandler) {
+void* handle(void* cli){
+    CLI* cli1 = static_cast<CLI*>(cli);
+    cli1->start();
+    return NULL;
+}
+
+void Server:: start() {
     socklen_t addr_len = sizeof(client_sin);
     int client_sock = accept(sockNum, (struct sockaddr *) &client_sin, &addr_len);
     if (client_sock < 0) {
         cout << "error accepting client" << endl;
         exit(0);
     }
-    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
+    SocketIO* socketIo = new SocketIO(client_sock);
+    //SocketIO sio(client_sock);
+    CLI* cli =  new CLI(socketIo);
+    pthread_t pthread;
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_create(&pthread, &attr, handle, &cli);
+    //pthread_join(pthread, NULL);
+    pthread_detach(pthread);
+//    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
 }
 
 
@@ -55,7 +70,6 @@ int main (int argc, char *argv[]) {
     checkingArgv(server_port);
     Server server(server_port);
     while (true) {
-        ClientHandler ch;
-        server.start(ch);
+        server.start();
     }
 }

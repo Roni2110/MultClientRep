@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sstream>
+#include <fstream>
 #include "Knn.h"
 
 
@@ -73,23 +74,36 @@ public:
         return 0;
     }
 
+    static int checkIfOpen(string path) {
+        //file pointer
+        fstream fin;
+        //open an existing file
+        fin.open(path);
+        if(!fin.is_open()) {
+            cout << "Cant open file" << endl;
+            return -1;
+        }
+        return 0;
+    }
+
 
     /**
      * execute command1.
      */
     void execute() override {
-        string trainStr = "Please upload your local train CSV file.\n";
-        string testStr = "Please upload your local test CSV file.\n";
-        string complete = "Upload complete.\n";
-        string invalid = "invalid input\n";
+        string trainStr = "Please upload your local train CSV file.";
+        string testStr = "Please upload your local test CSV file.";
+        string complete = "Upload complete.";
+        string invalid = "invalid input";
         //write trainStr to the client
-        cout<<trainStr<<endl;
         dio->write(trainStr);
         string input1;
-        int check;
+        int checkCSV;
+        int checkOpen;
         input1 = dio->read();
-        check = checkInput(input1);
-        if(check == -1) {
+        checkCSV = checkInput(input1);
+        checkOpen = checkIfOpen(input1);
+        if(checkCSV == -1 || checkOpen == -1) {
             dio->write(invalid);
             return;
         } else {
@@ -100,8 +114,9 @@ public:
         dio->write(testStr);
         string input2;
         input2 = dio->read();
-        check = checkInput(input1);
-        if(check == -1) {
+        checkCSV = checkInput(input2);
+        checkOpen = checkIfOpen(input2);
+        if(checkCSV == -1 || checkOpen == -1) {
             dio->write(invalid);
             return;
         } else {
@@ -134,9 +149,12 @@ public:
         string invalidInput = "invalid input";
         string kToStr = to_string(currentK);
         string currentDistance = information->DIS;
-        string currentInfo = "The current KNN parameters are: k = ";
+        string currentInfo = "The current KNN parameters are: k =";
         dio->write(currentInfo + " " + kToStr + " " + "distance metric = " + currentDistance);
         string input = dio->read();
+        if(input.empty()) {
+            return;
+        }
         string str;
         int intNum;
         //check that there is an int.
@@ -152,8 +170,8 @@ public:
         if (ss >> str) {
             ss << str;
         }
-        if ((ss.str() != "AUC") && (ss.str() != "MAN") && (ss.str() != "CHB")
-        && (ss.str() != "CAN") && (ss.str() != "MIN")) {
+        if ((str != "AUC") && (str != "MAN") && (str != "CHB")
+        && (str != "CAN") && (str != "MIN")) {
             if(check != 1){
                 check = 2;
             } else {
@@ -199,9 +217,9 @@ public:
     ~ClassifyData() override= default;;
 
     void execute() override {
-        string notUpload = "please upload data\n";
-        string complete = "classifying data complete\n";
-        string invalid = "invalid input\n";
+        string notUpload = "please upload data";
+        string complete = "classifying data complete";
+        string invalid = "invalid input";
         int flag = 0;
         vector<string> v1;
         vector<vector<double>> resTest;
@@ -212,15 +230,16 @@ public:
         Knn* knn = new Knn(this->information->k, this->information->DIS, this->information->test,
                            this->information->train);
         resTest = knn->getVectorsTest(this->information->test);
-        knn->classifyData(this->information->train, resTest, flag);
+        string train = this->information->train;
+        knn->classifyData(train, resTest, flag);
         if(flag == -1) {
-            dio->write(invalid);
             delete knn;
+            dio->write(invalid);
             return;
         }
-        dio->write(complete);
         this->information->results = knn->getResVec();
         delete knn;
+        dio->write(complete);
     }
 };
 
@@ -269,9 +288,9 @@ public:
  */
     ~DownloadResult() override= default;;
     void execute() override {
-        string invalid1 = "please upload data.\n";
-        string invalid2 = "please classify data.\n";
-        string done = "Done.\n";
+        string invalid1 = "please upload data.";
+        string invalid2 = "please classify data.";
+        string done = "Done.";
         if(this->information->train.empty() || this->information->test.empty()) {
             dio->write(invalid1);
             return;
@@ -299,8 +318,6 @@ public:
     ~Exit() override= default;;
 
     void execute() override{
-        //delete all the data
-        delete information;
         //close the CLI
         string close_socket = "close";
         dio->write(close_socket);
