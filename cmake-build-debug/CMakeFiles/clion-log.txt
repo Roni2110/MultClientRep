@@ -2,3 +2,5 @@ C:\WINDOWS\system32\wsl.exe --distribution Ubuntu --exec /bin/bash -c "export CM
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /mnt/c/Users/omern/CLionProjects/MultClientRep/cmake-build-debug
+Cannot resolve compiler path '/usr/bin/c++'
+Cannot resolve compiler path '/usr/bin/c++'

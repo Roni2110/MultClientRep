@@ -240,9 +240,6 @@ public:
         }
         this->information->results = knn->getResVec();
         delete knn;
-        dio->write("wait");
-        while(dio->read() != "OK") {
-        }
         dio->write(complete);
     }
 };
