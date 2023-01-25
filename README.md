@@ -27,10 +27,10 @@ All the data that the client prints to the user it gets from the CLI. All the da
 
 You can see more information about the KNN algorithm and about the server-client connection in our previous exercises. 
 
-For executing the code we need to run the following command: make
+For compiling the code we need to run the following command: make
 
-The server will be activated by: server.out file port
+The server will be activated by: ./server.out port
 
-The client will be activated by: client.out ip port
+The client will be activated by: ./client.out ip port
 
 Then, the menu will be printed and the client will get options from the user and work with the CLI to execute them.
