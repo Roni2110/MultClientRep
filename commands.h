@@ -18,8 +18,11 @@
 using namespace std;
 
 struct info{
-    string train;
-    string test;
+    //string train;
+    //string test;
+    vector<string> strVec;
+    vector<vector<double>> trainVec;
+    vector<vector<double>> testVec;
     int k;
     string DIS;
     vector<string> results;
@@ -66,25 +69,53 @@ public:
      * @param input - string that the costumer entered.
      * @return - -1 if the string is invalid, 0 o.w.
      */
-    static int checkInput(string input) {
-        string str2 = ".csv";
-        if(!(strstr(input.c_str(), str2.c_str()))) {
-            return -1;
+//    static int checkInput(string input) {
+//        string str2 = ".csv";
+//        if(!(strstr(input.c_str(), str2.c_str()))) {
+//            return -1;
+//        }
+//        return 0;
+//    }
+//
+//    static int checkIfOpen(string path) {
+//        //file pointer
+//        fstream fin;
+//        //open an existing file
+//        fin.open(path);
+//        if(!fin.is_open()) {
+//            cout << "Cant open file" << endl;
+//            return -1;
+//        }
+//        return 0;
+//    }
+
+    void uploadTrain(string line) {
+        vector<vector<double>> resVec;
+        string tempByComma;
+        stringstream  ss(line);
+        vector<double> temp;
+        while (getline(ss, tempByComma, ',')) {
+            if(isalpha(tempByComma[0])) {
+                this->information->strVec.push_back(tempByComma);
+            } else {
+                temp.push_back(stod(tempByComma));
+            }
         }
-        return 0;
+        this->information->trainVec.push_back(temp);
     }
 
-    static int checkIfOpen(string path) {
-        //file pointer
-        fstream fin;
-        //open an existing file
-        fin.open(path);
-        if(!fin.is_open()) {
-            cout << "Cant open file" << endl;
-            return -1;
+    void uploadTest(string line) {
+        vector<vector<double>> resVec;
+        string tempByComma;
+        stringstream  ss(line);
+        vector<double> temp;
+        while (getline(ss, tempByComma, ',')) {
+            temp.push_back(stod(tempByComma));
         }
-        return 0;
+        this->information->testVec.push_back(temp);
     }
+
+
 
 
     /**
@@ -97,33 +128,29 @@ public:
         string invalid = "invalid input";
         //write trainStr to the client
         dio->write(trainStr);
-        string input1;
-        int checkCSV;
-        int checkOpen;
-        input1 = dio->read();
-        checkCSV = checkInput(input1);
-        checkOpen = checkIfOpen(input1);
-        if(checkCSV == -1 || checkOpen == -1) {
-            dio->write(invalid);
+        //upload train file
+        string input;
+        input = dio->read();
+        if(input == "stop"){
             return;
-        } else {
-            //upload to struct the file name
-            this->information->train = input1;
-            dio->write(complete);
         }
+        while(input != "finish") {
+            uploadTrain(input);
+            input = dio->read();
+        }
+        dio->write(complete);
+        //write testStr to the client
         dio->write(testStr);
         string input2;
         input2 = dio->read();
-        checkCSV = checkInput(input2);
-        checkOpen = checkIfOpen(input2);
-        if(checkCSV == -1 || checkOpen == -1) {
-            dio->write(invalid);
+        if(input2 == "stop"){
             return;
-        } else {
-            //upload to struct the file name
-            this->information->test = input2;
-            dio->write(complete);
         }
+        while(input2 != "finish") {
+            uploadTest(input2);
+            input2 = dio->read();
+        }
+        dio->write(complete);
     }
 };
 
@@ -224,15 +251,13 @@ public:
         int flag = 0;
         vector<string> v1;
         vector<vector<double>> resTest;
-        if(this->information->test.empty() || this->information->train.empty()) {
+        if(this->information->trainVec.empty() || this->information->testVec.empty()) {
             dio->write(notUpload);
             return;
         }
-        Knn* knn = new Knn(this->information->k, this->information->DIS, this->information->test,
-                           this->information->train);
-        resTest = knn->getVectorsTest(this->information->test);
-        string train = this->information->train;
-        knn->classifyData(train, resTest, flag);
+        Knn* knn = new Knn(this->information->k, this->information->DIS, this->information->trainVec,
+                           this->information->testVec,this->information->strVec);
+        knn->classifyData(flag);
         if(flag == -1) {
             delete knn;
             dio->write(invalid);
@@ -261,7 +286,7 @@ public:
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
         string done = "Done.";
-        if(this->information->train.empty() || this->information->test.empty()) {
+        if(this->information->trainVec.empty() || this->information->testVec.empty()) {
             dio->write(invalid1);
             return;
         }
@@ -292,10 +317,7 @@ public:
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
         string done = "Done.";
-        if(dio->read() == "STOP") {
-            return;
-        }
-        if(this->information->train.empty() || this->information->test.empty()) {
+        if(this->information->trainVec.empty() || this->information->testVec.empty()) {
             dio->write(invalid1);
             return;
         }

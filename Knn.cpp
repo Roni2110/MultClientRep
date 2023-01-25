@@ -12,98 +12,79 @@ using namespace std;
 /**
  * constructor.
  */
-Knn::Knn(int k, string disName, string testPath, string trainPath) {
+Knn::Knn(int k, string disName, vector<vector<double>> train, vector<vector<double>> test,vector<string> str) {
     this->k = k;
     this->disName = disName;
-    this->testFile = testPath;
-    this->file = trainPath;
+    this->stringVec = str;
+    this->trainVector = train;
+    this->testVector = test;
 }
-
-vector<vector<double>> Knn::getVectorsTest(string pathTest) {
-    string tempByLine, tempByComma;
-    vector<vector<double>> vecOfVec;
-    //file pointer
-    fstream fin;
-    //open an existing file
-    fin.open(pathTest);
+//
+//vector<vector<double>> Knn::getVectorsTest(string pathTest) {
+//    string tempByLine, tempByComma;
+//    vector<vector<double>> vecOfVec;
+//    //file pointer
+//    fstream fin;
+//    //open an existing file
+//    fin.open(pathTest);
 //    if(!fin.is_open()) {
 //        cout << "Cant open file" << endl;
-//        exit(0);
+//       exit(0);
+//   }
+//    //getting data from file into two vectors
+//    while(getline(fin, tempByLine)) {
+//        vector<double> v1;
+//        stringstream ss(tempByLine);
+//        while (getline(ss, tempByComma, ',')) {
+//            v1.push_back(stod(tempByComma));
+//        }
+//        vecOfVec.push_back(v1);
 //    }
-    //getting data from file into two vectors
-    while(getline(fin, tempByLine)) {
-        vector<double> v1;
-        stringstream ss(tempByLine);
-        while (getline(ss, tempByComma, ',')) {
-            v1.push_back(stod(tempByComma));
-        }
-        vecOfVec.push_back(v1);
-    }
-    return vecOfVec;
-}
+//    return vecOfVec;
+//}
 
-void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &flag) {
+void Knn::classifyData(int &flag) {
     double res;
-    int sizeTest = vecToTest.size();
-    int sizeTrain;
-    vector<vector<double>> resVec;
-    string tempByLine, tempByComma;
-    //file pointer
-    fstream fin;
-    //open an existing file
-    fin.open(pathFile);
-    while(getline(fin, tempByLine )) {
-        stringstream  ss(tempByLine);
-        vector<double> temp;
-        while (getline(ss, tempByComma, ',')) {
-            if(isalpha(tempByComma[0])) {
-                stringVec.push_back(tempByComma);
-            } else {
-                temp.push_back(stod(tempByComma));
-            }
-        }
-        resVec.push_back(temp);
-    }
-    fin.close();
-    sizeTrain = resVec.size();
+    int sizeTest = this->testVector.size();
+    int sizeTrain = this->trainVector.size();
     //in case one of the vectors in the trainFile in invalid.
     if(stringVec.size() != sizeTrain) {
         flag = -1;
         return;
     }
+    //in case number of neighbours is bigger than distances.
+    if(this->k > sizeTrain) {
+        this->k = sizeTrain;
+    }
     for(int i = 0; i < sizeTest; i++) {
         vector<double>temp;
         for(int j = 0; j < sizeTrain; j++) {
             //in case the vectors to test are not in the same size.
-            if (resVec.at(j).size() != vecToTest.at(i).size()) {
+            if (trainVector.at(j).size() != testVector.at(i).size()) {
                 flag = -1;
                 return;
             }
             //calling the distance method according to disName
             if (this->disName == "MAN") {
-                res = DistanceClass::getManDis(resVec.at(j), vecToTest.at(i));
+                res = DistanceClass::getManDis(trainVector.at(j), testVector.at(i));
                 temp.push_back(res);
             } else if (this->disName == "AUC") {
-                res = DistanceClass::getEucDis(resVec.at(j), vecToTest.at(i));
+                res = DistanceClass::getEucDis(trainVector.at(j), testVector.at(i));
                 temp.push_back(res);
             } else if (this->disName == "CHB") {
-                res = DistanceClass::getChebDis(resVec.at(j), vecToTest.at(i));
+                res = DistanceClass::getChebDis(trainVector.at(j), testVector.at(i));
                 temp.push_back(res);
             } else if (this->disName == "CAN") {
-                res = DistanceClass::getCanDis(resVec.at(j), vecToTest.at(i));
+                res = DistanceClass::getCanDis(trainVector.at(j), testVector.at(i));
                 if (res == -1) {
                     flag = -1;
                     return;
                 }
                 temp.push_back(res);
             } else {
-                res = DistanceClass::getMinkDis(resVec.at(j), vecToTest.at(i));
+                res = DistanceClass::getMinkDis(trainVector.at(j), testVector.at(i));
                 temp.push_back(res);
             }
-        }
-        //in case number of neighbours is bigger than distances.
-        if(this->k > temp.size()) {
-            this->k = temp.size();
         }
         pushingToPairs(temp,stringVec);
     }

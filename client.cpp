@@ -79,7 +79,37 @@ void writeFile(string path, vector<string>v1) {
     outFile.close();
 }
 
+static int checkInput(string input) {
+    string str2 = ".csv";
+    if(!(strstr(input.c_str(), str2.c_str()))) {
+        cout << "invalid input" << endl;
+        return -1;
+    }
+    //file pointer
+    fstream fin;
+    //open an existing file
+    fin.open(input);
+    if(!fin.is_open()) {
+        cout << "Cant open file" << endl;
+        return -1;
+    }
+    return 0;
+}
 
+void sendingFiles(string path, int socket) {
+    vector<vector<double>> resVec;
+    vector<string> stringVec;
+    string tempByLine, tempByComma;
+    //file pointer
+    fstream fin;
+    //open an existing file
+    fin.open(path);
+    while(getline(fin, tempByLine)) {
+        writeByChar(tempByLine,socket);
+    }
+    writeByChar("finish",socket);
+    fin.close();
+}
 
 int main(int argc, char *argv[]) {
     bool toFinish = false;
@@ -114,38 +144,76 @@ int main(int argc, char *argv[]) {
         //getting an option from the user and sending it to the cli
         string option;
         cin >> option;
+        if(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" &&
+        option != "8"){
+            cout << "invalid input" << endl;
+            writeByChar("-1" , sock);
+            continue;
+        }
         writeByChar(option,sock);
 
         if (option == "1") {
             temp = readByChar(sock);
             cout << temp << endl; //please upload train
             string trainFile;
+            int valid;
             //getting the file from the user
             cin.ignore();
             getline(cin, trainFile);
-            writeByChar(trainFile,sock); //send train path
-            temp = readByChar(sock); //invalid or complete
-            if (temp == "invalid input") {
-                cout << temp << endl;
+            valid = checkInput(trainFile);
+            if (valid == -1) {
+                writeByChar("stop", sock);
                 continue;
-            } else {
-                cout << temp << endl; //complete
-                temp = readByChar(sock); //upload test file
-                cout << temp << endl;
-                string testFile;
-                //getting the file from the user
-                cin>>std::ws;
-                getline(cin, testFile);
-                writeByChar(testFile,sock);
-                temp = readByChar(sock); //invalid or complete
-                if (temp == "invalid input") {
-                    cout << temp << endl;
-                    continue;
-                } else {
-                    cout << temp << endl;
-                }
             }
+            //open train file
+            sendingFiles(trainFile,sock);
+            temp = readByChar(sock); //upload train complete
+            cout << temp << endl;
+
+            temp = readByChar(sock);
+            cout << temp << endl; //please upload test
+            string testFile;
+            cin>>std::ws;
+            getline(cin, testFile); //getting path test
+            valid = checkInput(testFile);
+            if (valid == -1) {
+                writeByChar("stop", sock);
+                continue;
+            }
+            //open test file
+            sendingFiles(testFile,sock);
+            temp = readByChar(sock); //upload test complete
+            cout << temp << endl;
         }
+//            temp = readByChar(sock);
+//            cout << temp << endl; //please upload train
+//            string trainFile;
+//            //getting the file from the user
+//            cin.ignore();
+//            getline(cin, trainFile);
+//            writeByChar(trainFile,sock); //send train path
+//            temp = readByChar(sock); //invalid or complete
+//            if (temp == "invalid input") {
+//                cout << temp << endl;
+//                continue;
+//            } else {
+//                cout << temp << endl; //complete
+//                temp = readByChar(sock); //upload test file
+//                cout << temp << endl;
+//                string testFile;
+//                //getting the file from the user
+//                cin>>std::ws;
+//                getline(cin, testFile);
+//                writeByChar(testFile,sock);
+//                temp = readByChar(sock); //invalid or complete
+//                if (temp == "invalid input") {
+//                    cout << temp << endl;
+//                    continue;
+//                } else {
+//                    cout << temp << endl;
+//                }
+//            }
+
 
         if (option == "2") {
             temp = readByChar(sock);
@@ -201,12 +269,6 @@ int main(int argc, char *argv[]) {
             //get a local path from user
             cin.ignore();
             getline(cin, local_path);
-            if(access(local_path.c_str(), F_OK) == -1) {
-                writeByChar("STOP",sock);
-                cout << "invalid path" << endl;
-                continue;
-            }
-            writeByChar("OK",sock);
             temp = readByChar(sock);
             if (temp == "please upload data." || temp == "please classify data.") {
                 cout << temp << endl;

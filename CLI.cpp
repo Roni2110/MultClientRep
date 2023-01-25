@@ -28,6 +28,9 @@ void CLI::start() {
             commands.at(i)->print();
         }
         int chooseOp = stoi(dio->read());
+        if(chooseOp == -1){
+            continue;
+        }
         if(chooseOp == 8) {
             chooseOp = 6;
         }
