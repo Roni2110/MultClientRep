@@ -185,36 +185,6 @@ int main(int argc, char *argv[]) {
             temp = readByChar(sock); //upload test complete
             cout << temp << endl;
         }
-//            temp = readByChar(sock);
-//            cout << temp << endl; //please upload train
-//            string trainFile;
-//            //getting the file from the user
-//            cin.ignore();
-//            getline(cin, trainFile);
-//            writeByChar(trainFile,sock); //send train path
-//            temp = readByChar(sock); //invalid or complete
-//            if (temp == "invalid input") {
-//                cout << temp << endl;
-//                continue;
-//            } else {
-//                cout << temp << endl; //complete
-//                temp = readByChar(sock); //upload test file
-//                cout << temp << endl;
-//                string testFile;
-//                //getting the file from the user
-//                cin>>std::ws;
-//                getline(cin, testFile);
-//                writeByChar(testFile,sock);
-//                temp = readByChar(sock); //invalid or complete
-//                if (temp == "invalid input") {
-//                    cout << temp << endl;
-//                    continue;
-//                } else {
-//                    cout << temp << endl;
-//                }
-//            }
-
-
         if (option == "2") {
             temp = readByChar(sock);
             cout << temp << endl;
