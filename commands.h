@@ -162,7 +162,7 @@ public:
         if (ss >> intNum) {
             ss << intNum;
         }
-        if (!ss > 0) {
+        if (intNum <= 0) {
             check = 1;
         }
         //check that there is a string.
@@ -191,7 +191,7 @@ public:
             return;
         }
         if(check == 3){
-            dio->write(invalidK +"\n"+ invalidInput);
+            dio->write(invalidK +"\n"+ invalidDis);
             return;
         }
         this->information->k = intNum;
@@ -220,6 +220,7 @@ public:
         string notUpload = "please upload data";
         string complete = "classifying data complete";
         string invalid = "invalid input";
+        string wait = "wait";
         int flag = 0;
         vector<string> v1;
         vector<vector<double>> resTest;
@@ -239,6 +240,9 @@ public:
         }
         this->information->results = knn->getResVec();
         delete knn;
+        dio->write("wait");
+        while(dio->read() != "OK") {
+        }
         dio->write(complete);
     }
 };
@@ -291,6 +295,9 @@ public:
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
         string done = "Done.";
+        if(dio->read() == "STOP") {
+            return;
+        }
         if(this->information->train.empty() || this->information->test.empty()) {
             dio->write(invalid1);
             return;

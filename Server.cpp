@@ -27,10 +27,10 @@ Server::Server(int port){
     }
 }
 
-void* handle(CLI* cli){
-    cli->start();
-    pthread_exit(nullptr);
-}
+//void* handle(CLI* cli){
+//    cli->start();
+//    pthread_exit(nullptr);
+//}
 
 void Server:: start() {
     socklen_t addr_len = sizeof(client_sin);
@@ -40,15 +40,18 @@ void Server:: start() {
         exit(0);
     }
 
-    pthread_t pthread;
-    SocketIO sio(client_sock);
-    CLI cli(&sio);
-    pthread_create(&pthread, NULL, reinterpret_cast<void *(*)(void *)>(handle), &cli);
-
+   // pthread_t pthread;
+   DeafultIO* dio = (DeafultIO*)new SocketIO(client_sock);
+    CLI* cli = new CLI(dio);
+    //SocketIO sio(client_sock);
+    //CLI cli(&sio);
+    //pthread_create(&pthread, NULL, reinterpret_cast<void *(*)(void *)>(handle), &cli);
+        thread t(&CLI::start,cli);
+        t.detach();
 //    pthread_attr_t attr;
 //    pthread_attr_init(&attr);
 //    pthread_create(&pthread, &attr, handle, &cli);
-    //pthread_join(pthread, NULL);
+ //   pthread_join(pthread, NULL);
    // pthread_detach(pthread);
 //    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
 }

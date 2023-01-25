@@ -44,7 +44,6 @@ vector<vector<double>> Knn::getVectorsTest(string pathTest) {
 
 void Knn::classifyData(string pathFile, vector<vector<double>> vecToTest, int &flag) {
     double res;
-    int i = 0;
     int sizeTest = vecToTest.size();
     int sizeTrain;
     vector<vector<double>> resVec;

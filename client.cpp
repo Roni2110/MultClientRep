@@ -170,6 +170,10 @@ int main(int argc, char *argv[]) {
         }
 
         if (option == "3") {
+            while(readByChar(sock) != "wait") {
+
+            }
+            writeByChar("OK",sock);
             temp = readByChar(sock);
             cout << temp << endl;
         }
@@ -202,6 +206,12 @@ int main(int argc, char *argv[]) {
             //get a local path from user
             cin.ignore();
             getline(cin, local_path);
+            if(access(local_path.c_str(), F_OK) == -1) {
+                writeByChar("STOP",sock);
+                cout << "invalid path" << endl;
+                continue;
+            }
+            writeByChar("OK",sock);
             temp = readByChar(sock);
             if (temp == "please upload data." || temp == "please classify data.") {
                 cout << temp << endl;
