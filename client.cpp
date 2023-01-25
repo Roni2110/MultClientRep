@@ -12,7 +12,6 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <valarray>
-#include <fstream>
 #include "Server.h"
 
 
@@ -170,10 +169,6 @@ int main(int argc, char *argv[]) {
         }
 
         if (option == "3") {
-            while(readByChar(sock) != "wait") {
-
-            }
-            writeByChar("OK",sock);
             temp = readByChar(sock);
             cout << temp << endl;
         }
