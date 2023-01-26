@@ -19,30 +19,11 @@ Knn::Knn(int k, string disName, vector<vector<double>> train, vector<vector<doub
     this->trainVector = train;
     this->testVector = test;
 }
-//
-//vector<vector<double>> Knn::getVectorsTest(string pathTest) {
-//    string tempByLine, tempByComma;
-//    vector<vector<double>> vecOfVec;
-//    //file pointer
-//    fstream fin;
-//    //open an existing file
-//    fin.open(pathTest);
-//    if(!fin.is_open()) {
-//        cout << "Cant open file" << endl;
-//       exit(0);
-//   }
-//    //getting data from file into two vectors
-//    while(getline(fin, tempByLine)) {
-//        vector<double> v1;
-//        stringstream ss(tempByLine);
-//        while (getline(ss, tempByComma, ',')) {
-//            v1.push_back(stod(tempByComma));
-//        }
-//        vecOfVec.push_back(v1);
-//    }
-//    return vecOfVec;
-//}
 
+/**
+ * classifying data given for the client.
+ * @param flag - if something invalid - change flag to -1.
+ */
 void Knn::classifyData(int &flag) {
     double res;
     int sizeTest = this->testVector.size();
@@ -133,6 +114,10 @@ void Knn::getSignificant(vector<pair<double, string>> pairs) {
     this->finishStrVec.push_back(res);
 }
 
+/**
+ * getter.
+ * @return - the vector with the results.
+ */
 vector<string> Knn::getResVec() {
     return this->finishStrVec;
 }

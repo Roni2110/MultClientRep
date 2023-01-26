@@ -8,6 +8,10 @@
 using namespace std;
 
 
+/**
+ * constructor.
+ * @param port - port of server.
+ */
 Server::Server(int port){
     sockNum = socket(AF_INET, SOCK_STREAM, 0);
     if (sockNum < 0) {
@@ -27,11 +31,9 @@ Server::Server(int port){
     }
 }
 
-//void* handle(CLI* cli){
-//    cli->start();
-//    pthread_exit(nullptr);
-//}
-
+/**
+ * initializing server and creating thread for each client.
+ */
 void Server:: start() {
     socklen_t addr_len = sizeof(client_sin);
     int client_sock = accept(sockNum, (struct sockaddr *) &client_sin, &addr_len);
@@ -40,20 +42,10 @@ void Server:: start() {
         exit(0);
     }
 
-   // pthread_t pthread;
    DeafultIO* dio = (DeafultIO*)new SocketIO(client_sock);
     CLI* cli = new CLI(dio);
-    //SocketIO sio(client_sock);
-    //CLI cli(&sio);
-    //pthread_create(&pthread, NULL, reinterpret_cast<void *(*)(void *)>(handle), &cli);
-        thread t(&CLI::start,cli);
-        t.detach();
-//    pthread_attr_t attr;
-//    pthread_attr_init(&attr);
-//    pthread_create(&pthread, &attr, handle, &cli);
- //   pthread_join(pthread, NULL);
-   // pthread_detach(pthread);
-//    std::thread t(&ClientHandler::handle,clientHandler,client_sock);
+    thread t(&CLI::start,cli);
+    t.detach();
 }
 
 

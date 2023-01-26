@@ -17,6 +17,11 @@
 
 using namespace std;
 
+/**
+ * writing string to server.
+ * @param text - the string we want to send.
+ * @param serverId - client socket ID.
+ */
 void writeByChar(string text, int serverId) {
     int length = text.length();
     text[length] = '@';
@@ -29,6 +34,11 @@ void writeByChar(string text, int serverId) {
     }
 }
 
+/**
+ * reading message from the server.
+ * @param serverId - client socket ID.
+ * @return the message given.
+ */
 string readByChar(int serverId) {
     string message;
     char c;
@@ -69,6 +79,11 @@ void checkingClientArgv(int port, string ip_address){
     }
 }
 
+/**
+ * in case 5 - writing classification to a file given.
+ * @param path - the path to the file.
+ * @param v1 - vector with the results to print.
+ */
 void writeFile(string path, vector<string>v1) {
     ofstream outFile;
     outFile.open(path);
@@ -79,6 +94,11 @@ void writeFile(string path, vector<string>v1) {
     outFile.close();
 }
 
+/**
+ * checking if the path given is valid.
+ * @param input - the path given.
+ * @return - (-1) if the input is invalid, otherwise 0.
+ */
 static int checkInput(string input) {
     string str2 = ".csv";
     if(!(strstr(input.c_str(), str2.c_str()))) {
@@ -96,6 +116,11 @@ static int checkInput(string input) {
     return 0;
 }
 
+/**
+ * sending all content of the files to the server.
+ * @param path - the path to the file.
+ * @param socket - client socket ID.
+ */
 void sendingFiles(string path, int socket) {
     vector<vector<double>> resVec;
     vector<string> stringVec;

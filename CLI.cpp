@@ -1,11 +1,24 @@
 #include "CLI.h"
 
 
-//constructor
+/***
+* constructor.
+ * @param dio - socketIO.
+ */
 CLI::CLI(DeafultIO* dio) {
     this->dio = dio;
 }
 
+/**
+ * a function that initializing the costumer information struct, and printing the menu to the user.
+ * if the user press 1 - go to upload files.
+ * if the user press 2 - changing the neighbors and distance.
+ * if the user press 3 - classifying the file uploaded according to different distances.
+ * if the user press 4 - displaying results on the screen.
+ * if the user press 5 - writing results to a file given.
+ * if the user press 8 - exit the program.
+ * in any other cases - sending invalid input.
+ */
 void CLI::start() {
     info my_info;
     string starting = "Welcome to the KNN Classifier server. Please choose an option:\n";
@@ -38,5 +51,8 @@ void CLI::start() {
     }
 }
 
+/**
+ * destructor.
+ */
 CLI::~CLI() = default;
 

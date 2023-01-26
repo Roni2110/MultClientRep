@@ -17,9 +17,10 @@
 
 using namespace std;
 
+/**
+ * struct of information for each client.
+ */
 struct info{
-    //string train;
-    //string test;
     vector<string> strVec;
     vector<vector<double>> trainVec;
     vector<vector<double>> testVec;
@@ -28,6 +29,9 @@ struct info{
     vector<string> results;
 };
 
+/**
+ * communicating the server by socket IO.
+ */
 class DeafultIO{
 public:
     virtual string read()= 0;
@@ -35,7 +39,9 @@ public:
     virtual ~DeafultIO()= default;
 };
 
-
+/**
+ * all possible command class.
+ */
 class Command{
 protected:
     DeafultIO* dio;
@@ -49,12 +55,18 @@ public:
         dio->write(description);
     }
 };
+
 /**
  * first command.
  */
 class UploadFiles : public Command {
 public:
 
+    /**
+     * constructor.
+     * @param dio - the current IO we use.
+     * @param info - struct of information of the client.
+     */
     UploadFiles(DeafultIO* dio, struct info* info) : Command(dio, info){
         this->description = "1. upload an unclassified csv data files\n";
     }
@@ -64,31 +76,11 @@ public:
      */
     ~UploadFiles() override= default;;
 
-    /**
-     * validate client input.
-     * @param input - string that the costumer entered.
-     * @return - -1 if the string is invalid, 0 o.w.
-     */
-//    static int checkInput(string input) {
-//        string str2 = ".csv";
-//        if(!(strstr(input.c_str(), str2.c_str()))) {
-//            return -1;
-//        }
-//        return 0;
-//    }
-//
-//    static int checkIfOpen(string path) {
-//        //file pointer
-//        fstream fin;
-//        //open an existing file
-//        fin.open(path);
-//        if(!fin.is_open()) {
-//            cout << "Cant open file" << endl;
-//            return -1;
-//        }
-//        return 0;
-//    }
 
+    /**
+     * uploading the train file sent from the client.
+     * @param line - line in the file.
+     */
     void uploadTrain(string line) {
         vector<vector<double>> resVec;
         string tempByComma;
@@ -104,6 +96,10 @@ public:
         this->information->trainVec.push_back(temp);
     }
 
+    /**
+     * upload test file sent from the client.
+     * @param line - line in the file.
+     */
     void uploadTest(string line) {
         vector<vector<double>> resVec;
         string tempByComma;
@@ -114,8 +110,6 @@ public:
         }
         this->information->testVec.push_back(temp);
     }
-
-
 
 
     /**
@@ -159,15 +153,25 @@ public:
  */
 class AlgorithmSetting: public Command{
 public:
+    /**
+     * constructor.
+     * @param dio - current io used.
+     * @param info - struct of information of the client.
+     */
     AlgorithmSetting(DeafultIO* dio, struct info* info): Command(dio, info) {
         this->description = "2. algorithm settings\n";
         this->information->k = 5;
         this->information->DIS = "AUC";
     }
+
     /**
  * destructor.
  */
     ~AlgorithmSetting() override= default;;
+
+    /**
+     * executing command 2.
+     */
     void execute() override {
         int check = 0;
         int currentK = information->k;
@@ -234,6 +238,11 @@ public:
 class ClassifyData : public Command {
 public:
 
+    /**
+     * constructor.
+     * @param dio - current io used.
+     * @param info - struct of information of the client.
+     */
     ClassifyData(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "3. classify data\n";
     }
@@ -243,6 +252,9 @@ public:
      */
     ~ClassifyData() override= default;;
 
+    /**
+     * executing command 3.
+     */
     void execute() override {
         string notUpload = "please upload data";
         string complete = "classifying data complete";
@@ -274,6 +286,12 @@ public:
  */
 class DisplayResult : public Command {
 public:
+
+    /**
+ * constructor.
+ * @param dio - current io used.
+ * @param info - struct of information of the client.
+ */
     DisplayResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "4. display results\n";
     }
@@ -282,6 +300,10 @@ public:
      * destructor.
      */
     ~DisplayResult() override= default;;
+
+    /**
+     * executing command 4.
+     */
     void execute() override {
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
@@ -305,6 +327,12 @@ public:
 
 class DownloadResult : public Command {
 public:
+
+    /**
+ * constructor.
+ * @param dio - current io used.
+ * @param info - struct of information of the client.
+ */
     DownloadResult(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "5. download results\n";
     }
@@ -313,6 +341,10 @@ public:
  * destructor.
  */
     ~DownloadResult() override= default;;
+
+    /**
+     * executing command 5.
+     */
     void execute() override {
         string invalid1 = "please upload data.";
         string invalid2 = "please classify data.";
@@ -338,11 +370,24 @@ public:
  */
 class Exit: public Command{
 public:
+
+    /**
+ * constructor.
+ * @param dio - current io used.
+ * @param info - struct of information of the client.
+ */
     Exit(DeafultIO* dio, struct info* info) : Command(dio, info) {
         this->description = "8. exit\n";
     }
+
+    /**
+     * destructor.
+     */
     ~Exit() override= default;;
 
+    /**
+     * executing command 8.
+     */
     void execute() override{
         //close the CLI
         string close_socket = "close";
